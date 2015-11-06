@@ -1,1 +1,5 @@
 # FunUkuleleQuiz
+
+
+## License
+MIT
