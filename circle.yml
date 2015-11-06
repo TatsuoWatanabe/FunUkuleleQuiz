@@ -1,6 +1,7 @@
 general:
   artifacts:
     - "app/build/outputs/apk/app-debug.apk"
+    # - "app/build/outputs/apk/app-release.apk"
 
 ## Customize the test machine
 machine:
@@ -27,3 +28,6 @@ deployment:
     branch: master
     commands:
       - ./gradlew assembleDebug
+      # - ./gradlew assembleRelease
+      - git log -1 --oneline > commitlog
+      - curl -F "file=@app/build/outputs/apk/app-debug.apk" -F "token=${DEPLOY_GATE_KEY}" -F "message=<commitlog" https://deploygate.com/api/users/TatsuoWatanabe/apps
