@@ -5,15 +5,37 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +44,67 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        final MainActivity ma = this;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getCurrentDateTimeString(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(final View view) {
+                // Snackbar.make(view, getCurrentDateTimeString(), Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
+
+
+                // --- Ukulele Quiz ---
+                String url = "http://mongoquizserver.herokuapp.com/api/?limit=1";
+                Log.d("Ukulele Quiz API URL", url);
+                RequestQueue mQueue = Volley.newRequestQueue(ma);
+                Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // JSONObjectのパース、List、Viewへの追加等
+
+                        Log.d(" onResponse:", response.toString());
+                        try {
+                            //JSONArray quizzes = response.getJSONArray(0);
+                            JSONObject quiz   = response.getJSONObject(0);
+                            Snackbar.make(view, quiz.getString("body_ja") + "?", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        //Snackbar.make(view, response.toString(), Snackbar.LENGTH_LONG)
+                        //        .setAction("Action", null).show();
+
+                    }
+                };
+                Response.ErrorListener resErrListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // エラー処理 error.networkResponseで確認
+                        // Log.d(" error.networkResponse", error.networkResponse.toString());
+
+                        NetworkResponse response = error.networkResponse;
+                        if(response != null && response.data != null){
+                            switch(response.statusCode){
+                                case 400:
+                                    String json = new String(response.data);
+                                    json = trimMessage(json, "message");
+                                    if(json != null) displayMessage(json);
+                                    break;
+                            }
+                        }
+                    }
+                };
+                JsonArrayRequest jsonRec = new JsonArrayRequest(Request.Method.GET, url, jsonRecListener, resErrListener);
+                mQueue.add(jsonRec);
+                // ---
             }
         });
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -50,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_now) {
-            android.widget.Toast.makeText(this, getCurrentDateTimeString(), android.widget.Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getCurrentDateTimeString(), Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -58,11 +133,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * @see "http://stackoverflow.com/questions/21867929/android-how-handle-message-error-from-the-server-using-volley"
+     */
+    public String trimMessage(String json, String key){
+        String trimmedString;
+
+        try{
+            JSONObject obj = new JSONObject(json);
+            trimmedString = obj.getString(key);
+        } catch(JSONException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return trimmedString;
+    }
+
+    //Somewhere that has access to a context
+    public void displayMessage(String toastString){
+        Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
+    }
+
+
+    /**
      * 現在日時をyyyy/MM/dd HH:mm:ss形式で取得する.<br>
      */
-    public static String getCurrentDateTimeString() {
+    private String getCurrentDateTimeString() {
         final DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         final Date date = new Date(System.currentTimeMillis());
         return df.format(date);
     }
+
 }
