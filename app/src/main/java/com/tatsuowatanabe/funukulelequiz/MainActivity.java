@@ -2,7 +2,6 @@ package com.tatsuowatanabe.funukulelequiz;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +19,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.tatsuowatanabe.funukulelequiz.Model.QuizApiUrl;
+import com.tatsuowatanabe.funukulelequiz.Model.Quizzes;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,52 +31,39 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
 
+    /**
+     * Volley request Queue.
+     */
+    private RequestQueue mQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mQueue = Volley.newRequestQueue(this);
 
-
-        final MainActivity ma = this;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                // Snackbar.make(view, getCurrentDateTimeString(), Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
-
-
-                // --- Ukulele Quiz ---
-                String url = "http://mongoquizserver.herokuapp.com/api/?limit=1";
+                String url = QuizApiUrl.url(1);
                 Log.d("Ukulele Quiz API URL", url);
-                RequestQueue mQueue = Volley.newRequestQueue(ma);
+
                 Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // JSONObjectのパース、List、Viewへの追加等
-
-                        Log.d(" onResponse:", response.toString());
-                        try {
-                            //JSONArray quizzes = response.getJSONArray(0);
-                            JSONObject quiz   = response.getJSONObject(0);
-                            Snackbar.make(view, quiz.getString("body_ja") + "?", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        } catch(Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        //Snackbar.make(view, response.toString(), Snackbar.LENGTH_LONG)
-                        //        .setAction("Action", null).show();
-
+                        Quizzes quizzes = Quizzes.fromJson(response);
+                        Log.d(" quizzes", quizzes.toString());
+                        displayMessage(quizzes.toString());
                     }
                 };
                 Response.ErrorListener resErrListener = new Response.ErrorListener() {
