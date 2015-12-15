@@ -4,27 +4,16 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.tatsuowatanabe.funukulelequiz.Model.QuizApiUrl;
-import com.tatsuowatanabe.funukulelequiz.Model.Quizzes;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.tatsuowatanabe.funukulelequiz.Model.QuizGame;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -42,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private RequestQueue mQueue;
 
+
+    private final QuizGame game = new QuizGame();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,49 +44,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mQueue = Volley.newRequestQueue(this);
 
+        // floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                String url = QuizApiUrl.url(1);
-                Log.d("Ukulele Quiz API URL", url);
-
-                Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Quizzes quizzes = Quizzes.fromJson(response);
-                        Log.d(" quizzes", quizzes.toString());
-                        displayMessage(quizzes.toString());
-                    }
-                };
-                Response.ErrorListener resErrListener = new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // エラー処理 error.networkResponseで確認
-                        // Log.d(" error.networkResponse", error.networkResponse.toString());
-
-                        NetworkResponse response = error.networkResponse;
-                        if(response != null && response.data != null){
-                            switch(response.statusCode){
-                                case 400:
-                                    String json = new String(response.data);
-                                    json = trimMessage(json, "message");
-                                    if(json != null) displayMessage(json);
-                                    break;
-                            }
-                        }
-                    }
-                };
-                JsonArrayRequest jsonRec = new JsonArrayRequest(Request.Method.GET, url, jsonRecListener, resErrListener);
-                mQueue.add(jsonRec);
-                // ---
-            }
+            @Override public void onClick(final View view) { startQuiz(view); }
         });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+    public void startQuiz(final View view) {
+        game.start(this, mQueue);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,23 +83,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * @see "http://stackoverflow.com/questions/21867929/android-how-handle-message-error-from-the-server-using-volley"
-     */
-    public String trimMessage(String json, String key){
-        String trimmedString;
-
-        try{
-            JSONObject obj = new JSONObject(json);
-            trimmedString = obj.getString(key);
-        } catch(JSONException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return trimmedString;
     }
 
     //Somewhere that has access to a context

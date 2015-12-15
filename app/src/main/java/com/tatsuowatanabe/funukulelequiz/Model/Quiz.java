@@ -19,4 +19,8 @@ public class Quiz {
         public Integer point;
     }
 
+    public void shuffleChoices() {
+        // TODO: shuffle the choice.
+    }
+
 }

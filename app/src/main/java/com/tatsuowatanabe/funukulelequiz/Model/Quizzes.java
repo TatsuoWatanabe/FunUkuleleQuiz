@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by tatsuo on 11/26/15.
@@ -23,6 +24,14 @@ public class Quizzes {
      */
     public static Quizzes fromJson(JSONArray json) {
         return gson.fromJson("{quizzes:" + json.toString() + "}", Quizzes.class);
+    }
+
+    /**
+     * iterator of quizzes ArrayList.
+     * @return
+     */
+    public Iterator<Quiz> iterator() {
+        return quizzes.iterator();
     }
 
     @Override
