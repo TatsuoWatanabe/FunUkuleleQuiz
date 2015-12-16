@@ -45,9 +45,15 @@ public class MainActivity extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
 
         // floating action button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(final View view) { startQuiz(view); }
+            @Override public void onClick(final View view) { startQuiz(); }
+        });
+
+        // floating action button
+        FloatingActionButton fabNext = (FloatingActionButton)findViewById(R.id.fab_next);
+        fabNext.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(final View view) { nextQuiz(); }
         });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -55,8 +61,18 @@ public class MainActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    public void startQuiz(final View view) {
+    /**
+     * start the quiz game.
+     */
+    public void startQuiz() {
         game.start(this, mQueue);
+    }
+
+    /**
+     * show the next quiz.
+     */
+    public void nextQuiz() {
+        game.nextQuiz(this);
     }
 
 

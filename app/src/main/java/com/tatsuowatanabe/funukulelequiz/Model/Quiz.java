@@ -1,5 +1,9 @@
 package com.tatsuowatanabe.funukulelequiz.Model;
 
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 /**
@@ -21,6 +25,12 @@ public class Quiz {
 
     public void shuffleChoices() {
         // TODO: shuffle the choice.
+    }
+
+    @Override
+    public String toString() {
+        final Gson gson = new Gson();
+        return TextUtils.join("\n", gson.toJson(this).split(","));
     }
 
 }

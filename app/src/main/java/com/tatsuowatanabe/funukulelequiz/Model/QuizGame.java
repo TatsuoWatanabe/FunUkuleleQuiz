@@ -92,6 +92,7 @@ public class QuizGame {
 
     /**
      * get quizzes and start the game.
+     * @param activity
      * @param que
      */
     public void start(final MainActivity activity, RequestQueue que) {
@@ -106,7 +107,7 @@ public class QuizGame {
                 Quizzes quizzes = Quizzes.fromJson(response);
 
                 // TODO: 取得した問題を表示する
-                setQuizzes(quizzes).nextQuiz();
+                setQuizzes(quizzes).nextQuiz(activity);
 
                 // this.initProgress(this.quizzes);
 
@@ -133,17 +134,18 @@ public class QuizGame {
     /**
      * get the next quiz from quizIterator.
      */
-    public void nextQuiz() {
+    public void nextQuiz(final MainActivity activity) {
         if (quizIterator == null) { return; }
         if (quizIterator.hasNext()) {
             Quiz quiz = quizIterator.next();
-            setCurrentQuiz(quiz).showQuiz();
+            setCurrentQuiz(quiz).showQuiz(activity);
         } else {
             // this.closeResults();
         }
     }
 
-    public void showQuiz() {
+    private void showQuiz(final MainActivity activity) {
+        activity.displayMessage(currentQuiz.toString());
         // TODO: show current quiz.
     }
 
