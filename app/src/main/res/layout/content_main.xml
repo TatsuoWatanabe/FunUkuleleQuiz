@@ -10,18 +10,18 @@
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
     <TextView
-        android:text="Hello World!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
-    <TextView
         android:text="@string/app_name"
+        android:id="@+id/quiz_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerInParent="true"
         android:textSize="25dp"
+    />
+
+    <ListView
+        android:id="@+id/choices_list"
+        android:layout_width="match_parent"
+        android:layout_below="@id/quiz_display"
+        android:layout_height="wrap_content"
     />
 
 </RelativeLayout>

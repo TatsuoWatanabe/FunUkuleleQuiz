@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private RequestQueue mQueue;
 
-
+    /**
+     * Game Manager Object.
+     */
     private final QuizGame game = new QuizGame();
 
 

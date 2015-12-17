@@ -1,6 +1,9 @@
 package com.tatsuowatanabe.funukulelequiz.Model;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -9,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
+import com.tatsuowatanabe.funukulelequiz.R;
 
 import org.json.JSONArray;
 
@@ -79,6 +83,9 @@ public class QuizGame {
     /** quiz object of now displaying. */
     private Quiz currentQuiz;
 
+    /** display language setting. */
+    private String lang;
+
     /**
      * set the current quiz object.
      * @param Quiz qz
@@ -87,6 +94,7 @@ public class QuizGame {
     private QuizGame setCurrentQuiz(Quiz qz) {
         qz.shuffleChoices();
         this.currentQuiz = qz;
+        this.lang        = "ja"; // TODO: get lang from system on initialize.
         return this;
     }
 
@@ -96,24 +104,16 @@ public class QuizGame {
      * @param que
      */
     public void start(final MainActivity activity, RequestQueue que) {
-        String url = QuizApiUrl.url(3);
+        String url = QuizApiUrl.url(10);
         Log.d("Ukulele Quiz API URL", url);
-
+        // TODO: hide the start button, until game end.
         // this.$btnStart.hide();
         // this.resetResults();
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
                 Quizzes quizzes = Quizzes.fromJson(response);
-
-                // TODO: 取得した問題を表示する
                 setQuizzes(quizzes).nextQuiz(activity);
-
-                // this.initProgress(this.quizzes);
-
-                Log.d(" quizzes", quizzes.toString());
-
-                activity.displayMessage(quizzes.toString());
             }
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
@@ -124,6 +124,7 @@ public class QuizGame {
                 if (response.statusCode == 400) {
                     String json = new String(response.data);
                     Log.d(" onErrorResponse", json);
+                    activity.displayMessage("Sorry, a network error has occurred.");
                 }
             }
         };
@@ -140,13 +141,31 @@ public class QuizGame {
             Quiz quiz = quizIterator.next();
             setCurrentQuiz(quiz).showQuiz(activity);
         } else {
+            // TODO: finish the game and show results.
+            TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
+            quizDisplay.setText("TODO: finish the game and show results.");
             // this.closeResults();
+
         }
     }
 
     private void showQuiz(final MainActivity activity) {
-        activity.displayMessage(currentQuiz.toString());
+        TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
+        ListView choicesList = (ListView)activity.findViewById(R.id.choices_list);
+
+        String   quizBody = currentQuiz.getBody(lang);
+        // TODO: 取得した問題を格好良く表示する
+        quizDisplay.setText(quizBody);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1);
+        for (Quiz.Choice choice: currentQuiz.getChoices()) {
+            adapter.add(choice.getBody(lang));
+        }
+        choicesList.setAdapter(adapter);
+
         // TODO: show current quiz.
+
     }
 
 
