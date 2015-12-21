@@ -1,6 +1,8 @@
 package com.tatsuowatanabe.funukulelequiz.Model;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -149,24 +151,33 @@ public class QuizGame {
         }
     }
 
+    /**
+     * show the current quiz.
+     * @param activity
+     */
     private void showQuiz(final MainActivity activity) {
         TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
         ListView choicesList = (ListView)activity.findViewById(R.id.choices_list);
 
-        String   quizBody = currentQuiz.getBody(lang);
-        // TODO: 取得した問題を格好良く表示する
+        String quizBody = currentQuiz.getBody(lang);
         quizDisplay.setText(quizBody);
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.simple_list_item_1);
         for (Quiz.Choice choice: currentQuiz.getChoices()) {
             adapter.add(choice.getBody(lang));
         }
         choicesList.setAdapter(adapter);
+        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListView listView = (ListView) parent;
+                String item = (String)listView.getItemAtPosition(position);
+                activity.displayMessage(item);
+                // TODO: receive user's answer.
+            }
+        });
 
         // TODO: show current quiz.
 
     }
-
 
 }
