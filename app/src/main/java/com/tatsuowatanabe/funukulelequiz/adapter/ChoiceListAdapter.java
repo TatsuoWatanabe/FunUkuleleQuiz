@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.R;
-import com.tatsuowatanabe.funukulelequiz.models.Quiz;
+import com.tatsuowatanabe.funukulelequiz.model.Quiz;
 
 /**
  * Created by tatsuo on 12/22/15.

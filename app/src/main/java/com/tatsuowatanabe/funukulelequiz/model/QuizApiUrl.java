@@ -1,4 +1,4 @@
-package com.tatsuowatanabe.funukulelequiz.models;
+package com.tatsuowatanabe.funukulelequiz.model;
 
 /**
  * Created by tatsuo on 11/26/15.
