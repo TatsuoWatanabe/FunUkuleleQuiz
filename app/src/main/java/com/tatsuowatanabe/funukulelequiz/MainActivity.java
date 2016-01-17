@@ -13,7 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.tatsuowatanabe.funukulelequiz.Model.QuizGame;
+import com.tatsuowatanabe.funukulelequiz.model.QuizGame;
 
 import java.sql.Date;
 import java.text.DateFormat;
