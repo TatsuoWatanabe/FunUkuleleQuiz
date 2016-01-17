@@ -1,4 +1,4 @@
-package com.tatsuowatanabe.funukulelequiz.Model;
+package com.tatsuowatanabe.funukulelequiz.models;
 
 import android.text.TextUtils;
 

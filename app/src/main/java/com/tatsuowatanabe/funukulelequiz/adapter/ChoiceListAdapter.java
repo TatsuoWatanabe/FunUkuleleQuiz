@@ -1,17 +1,15 @@
 package com.tatsuowatanabe.funukulelequiz.adapter;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.R;
-import com.tatsuowatanabe.funukulelequiz.model.Quiz;
+import com.tatsuowatanabe.funukulelequiz.models.Quiz;
 
 /**
  * Created by tatsuo on 12/22/15.

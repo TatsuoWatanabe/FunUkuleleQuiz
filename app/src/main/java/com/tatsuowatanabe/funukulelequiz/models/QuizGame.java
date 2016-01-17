@@ -1,9 +1,8 @@
-package com.tatsuowatanabe.funukulelequiz.Model;
+package com.tatsuowatanabe.funukulelequiz.models;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
 import com.tatsuowatanabe.funukulelequiz.R;
+import com.tatsuowatanabe.funukulelequiz.adapter.ChoiceListAdapter;
 
 import org.json.JSONArray;
 
@@ -86,7 +86,7 @@ public class QuizGame {
     private Quiz currentQuiz;
 
     /** display language setting. */
-    private String lang;
+    private String lang = "ja"; // TODO: get lang from system on initialize.
 
     /**
      * set the current quiz object.
@@ -96,7 +96,6 @@ public class QuizGame {
     private QuizGame setCurrentQuiz(Quiz qz) {
         qz.shuffleChoices();
         this.currentQuiz = qz;
-        this.lang        = "ja"; // TODO: get lang from system on initialize.
         return this;
     }
 
@@ -114,6 +113,9 @@ public class QuizGame {
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
+
+                Log.d(" response", response.toString());
+
                 Quizzes quizzes = Quizzes.fromJson(response);
                 setQuizzes(quizzes).nextQuiz(activity);
             }
@@ -159,22 +161,51 @@ public class QuizGame {
         TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
         ListView choicesList = (ListView)activity.findViewById(R.id.choices_list);
 
-        String quizBody = currentQuiz.getBody(lang);
-        quizDisplay.setText(quizBody);
+        String quizBody = currentQuiz.setLang(lang).getBody();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.simple_list_item_1);
+        activity.displayMessage(quizBody);
+
+        quizDisplay.setText(quizBody);
+        ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
         for (Quiz.Choice choice: currentQuiz.getChoices()) {
-            adapter.add(choice.getBody(lang));
+            adapter.add(choice);
         }
+        // --- Sample Source -------------------------
+        // PackageManager packageManager = activity.getPackageManager();
+        // List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES);
+        // if (packageInfoList != null) {
+        //     for (PackageInfo info : packageInfoList) {
+        //         adapter.add(info);
+        //     }
+        // }
+        // --- /Sample Source -------------------------
+
+        int padding = (int) (activity.getResources().getDisplayMetrics().density * 8);
+        ListView listView = (ListView) activity.findViewById(R.id.choices_list);
+        listView.setPadding(padding, 0, padding, 0);
+        listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        listView.setDivider(null);
+
+        LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
+        View header = inflater.inflate(R.layout.list_header_footer, listView, false);
+        View footer = inflater.inflate(R.layout.list_header_footer, listView, false);
+        listView.addHeaderView(header, null, false);
+        listView.addFooterView(footer, null, false);
+        listView.setAdapter(adapter);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.simple_list_item_1);
+//        for (Quiz.Choice choice: currentQuiz.getChoices()) {
+//            adapter.add(choice.getBody(lang));
+//        }
         choicesList.setAdapter(adapter);
-        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListView listView = (ListView) parent;
-                String item = (String)listView.getItemAtPosition(position);
-                activity.displayMessage(item);
-                // TODO: receive user's answer.
-            }
-        });
+//        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
+//            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                ListView listView = (ListView) parent;
+//                String item = (String)listView.getItemAtPosition(position);
+//                activity.displayMessage(item);
+//                // TODO: receive user's answer.
+//            }
+//        });
 
         // TODO: show current quiz.
 
