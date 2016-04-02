@@ -3,6 +3,7 @@ package com.tatsuowatanabe.funukulelequiz.model;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -67,23 +68,21 @@ public class QuizGame {
 
     /** collection of quiz object for use in one game. */
     private Quizzes quizzes;
-
-    /** iterator of quizzes ArrayList. */
-    private Iterator<Quiz> quizIterator;
+    /** quiz object of now displaying. */
+    private Quiz currentQuiz;
 
     /**
      * set the quizzes and iterator of that.
      * @param qzs
      * @return
      */
-    private QuizGame setQuizzes(Quizzes qzs) {
-        this.quizzes      = qzs;
-        this.quizIterator = qzs.iterator();
+    private QuizGame setQuizzes(Quizzes qzs, MainActivity ac) {
+        quizzes = qzs;
+        quizzes.getResults().setActivity(ac).reset();
         return this;
     }
 
-    /** quiz object of now displaying. */
-    private Quiz currentQuiz;
+
 
     /** display language setting. */
     private String lang = "ja"; // TODO: get lang from system on initialize.
@@ -95,7 +94,7 @@ public class QuizGame {
      */
     private QuizGame setCurrentQuiz(Quiz qz) {
         qz.shuffleChoices();
-        this.currentQuiz = qz;
+        currentQuiz = qz;
         return this;
     }
 
@@ -117,7 +116,8 @@ public class QuizGame {
                 Log.d(" response", response.toString());
 
                 Quizzes quizzes = Quizzes.fromJson(response);
-                setQuizzes(quizzes).nextQuiz(activity);
+
+                setQuizzes(quizzes, activity).nextQuiz(activity);
             }
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
@@ -140,9 +140,9 @@ public class QuizGame {
      * get the next quiz from quizIterator.
      */
     public void nextQuiz(final MainActivity activity) {
-        if (quizIterator == null) { return; }
-        if (quizIterator.hasNext()) {
-            Quiz quiz = quizIterator.next();
+        if (quizzes.hasNext()) {
+            Quiz quiz = quizzes.next();
+            Log.d("nextQuiz", quiz.toString());
             setCurrentQuiz(quiz).showQuiz(activity);
         } else {
             // TODO: finish the game and show results.
@@ -160,52 +160,26 @@ public class QuizGame {
     private void showQuiz(final MainActivity activity) {
         TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
         ListView choicesList = (ListView)activity.findViewById(R.id.choices_list);
-
         String quizBody = currentQuiz.setLang(lang).getBody();
-
-        activity.displayMessage(quizBody);
-
         quizDisplay.setText(quizBody);
         ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
         for (Quiz.Choice choice: currentQuiz.getChoices()) {
             adapter.add(choice);
         }
-        // --- Sample Source -------------------------
-        // PackageManager packageManager = activity.getPackageManager();
-        // List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES);
-        // if (packageInfoList != null) {
-        //     for (PackageInfo info : packageInfoList) {
-        //         adapter.add(info);
-        //     }
-        // }
-        // --- /Sample Source -------------------------
 
-        int padding = (int) (activity.getResources().getDisplayMetrics().density * 8);
-        ListView listView = (ListView) activity.findViewById(R.id.choices_list);
-        listView.setPadding(padding, 0, padding, 0);
-        listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        listView.setDivider(null);
-
-        LayoutInflater inflater = LayoutInflater.from(activity.getApplicationContext());
-        View header = inflater.inflate(R.layout.list_header_footer, listView, false);
-        View footer = inflater.inflate(R.layout.list_header_footer, listView, false);
-        listView.addHeaderView(header, null, false);
-        listView.addFooterView(footer, null, false);
-        listView.setAdapter(adapter);
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.simple_list_item_1);
-//        for (Quiz.Choice choice: currentQuiz.getChoices()) {
-//            adapter.add(choice.getBody(lang));
-//        }
         choicesList.setAdapter(adapter);
-//        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
-//            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ListView listView = (ListView) parent;
-//                String item = (String)listView.getItemAtPosition(position);
-//                activity.displayMessage(item);
-//                // TODO: receive user's answer.
-//            }
-//        });
+        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListView listView = (ListView) parent;
+                // receive user's answer.
+                Quiz.Choice choice = (Quiz.Choice)listView.getItemAtPosition(position);
+                Integer point = choice.getPoint();
+                Log.d("onItemClick: ", String.valueOf(point));
+
+                quizzes.getResults().addPoint(point);
+                nextQuiz(activity);
+            }
+        });
 
         // TODO: show current quiz.
 

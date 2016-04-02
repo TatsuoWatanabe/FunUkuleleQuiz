@@ -3,19 +3,24 @@ package com.tatsuowatanabe.funukulelequiz.model;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by tatsuo on 11/26/15.
  * Quiz Object Collection Class.
  */
 public class Quizzes {
-    public ArrayList<Quiz> quizzes;
     private static final Gson gson = new Gson();
+    public ArrayList<Quiz> quizArrayList;
+    private transient Iterator<Quiz> quizIterator;
+    /** @see http://www.javacreed.com/gson-annotations-example/ */
+    private transient QuizResults results = null;
 
     /**
      * factory method. create self instance from json.
@@ -23,20 +28,53 @@ public class Quizzes {
      * @return returns the instance.
      */
     public static Quizzes fromJson(JSONArray json) {
-        return gson.fromJson("{quizzes:" + json.toString() + "}", Quizzes.class);
+        Quizzes instance = gson.fromJson(
+            "{" +
+                "\"quizArrayList\": " + json.toString() +
+            "}", Quizzes.class);
+        return instance;
     }
 
     /**
-     * iterator of quizzes ArrayList.
-     * @return
+     * Returns true if there is at least one more element, false otherwise.
+     * @see #next
      */
-    public Iterator<Quiz> iterator() {
-        return quizzes.iterator();
+    public boolean hasNext() {
+        return getQuizIterator().hasNext();
+    }
+
+    /**
+     * Returns the next object and advances the iterator.
+     *
+     * @return the next object.
+     * @throws NoSuchElementException
+     *             if there are no more elements.
+     * @see #hasNext
+     */
+    public Quiz next() {
+        return getQuizIterator().next();
     }
 
     @Override
     public String toString() {
-        return TextUtils.join("\n", gson.toJson(quizzes).split(","));
+        return TextUtils.join("\n", gson.toJson(quizArrayList).split(","));
     }
 
+    /**
+     * get the QuizResults Object.
+     * @return QuizResults
+     */
+    public QuizResults getResults() {
+        results = (results == null) ? new QuizResults() : results;
+        return results;
+    }
+
+    /**
+     * Get the Iterator of Quiz Object.
+     * @return
+     */
+    private Iterator<Quiz> getQuizIterator() {
+        quizIterator = (quizIterator == null) ? quizArrayList.iterator() : quizIterator;
+        return quizIterator;
+    }
 }

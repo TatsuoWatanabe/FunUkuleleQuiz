@@ -88,6 +88,14 @@ public class Quiz {
         }
 
         /**
+         * get the choice's point
+         * @return
+         */
+        public final Integer getPoint() {
+            return this.point;
+        }
+
+        /**
          * returns choice content body in language that Quiz has.
          * @return String
          */
