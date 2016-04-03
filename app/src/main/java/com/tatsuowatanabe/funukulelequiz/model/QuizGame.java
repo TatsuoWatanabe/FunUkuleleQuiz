@@ -1,7 +1,6 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,84 +18,15 @@ import com.tatsuowatanabe.funukulelequiz.adapter.ChoiceListAdapter;
 
 import org.json.JSONArray;
 
-import java.util.Iterator;
-
 /**
  * Created by tatsuo on 11/29/15.
  * Quiz game management class.
  */
 public class QuizGame {
-//    public  $el              = $('#quizapp');
-//    private $quizApp         = $('#quizapp');
-//    private $quizDisplay     = $('#quiz-display');
-//    private $pointDisplay    = $('#point-display');
-//    private $progressDisplay = $('#progress-display');
-//    private $choicesList     = $('#choices-list');
-//    private $btnStart        = $('#btn-start');
-//    private mainApiPath      = 'http://mongoquizserver.herokuapp.com/api';
-//    private quizzes       = [];
-//    private allQuizzes    = [];
-//    private currentQuiz: any;
-//    private results = {
-//        total      : 0,
-//                incorrects : [],
-//        isEnd      : false,
-//                explanation: { ja: '', en: '' },
-//        reset      : () => {
-//            this.results.total      = 0;
-//            this.results.isEnd      = false;
-//            this.results.incorrects = [];
-//            this.results.explanation.ja  = this.results.explanation.en  = '';
-//        }
-//    };
-
-//    private startQuiz() {
-//        var url = this.apiPaths[location.host] || this.mainApiPath;
-//        this.$btnStart.hide();
-//        this.resetResults();
-//        $.ajax(url, {
-//                data: { limit: 10 }
-//        }).done((data) => {
-//            this.quizzes    = _.clone(data);
-//            this.allQuizzes = _.clone(data);
-//            this.initProgress(this.quizzes);
-//            this.nextQuiz();
-//        }).fail(() => {
-//            this.$btnStart.show();
-//        });
-//    }
-
     /** collection of quiz object for use in one game. */
     private Quizzes quizzes;
-    /** quiz object of now displaying. */
-    private Quiz currentQuiz;
-
-    /**
-     * set the quizzes and iterator of that.
-     * @param qzs
-     * @return
-     */
-    private QuizGame setQuizzes(Quizzes qzs, MainActivity ac) {
-        quizzes = qzs;
-        quizzes.getResults().setActivity(ac).reset();
-        return this;
-    }
-
-
-
     /** display language setting. */
-    private String lang = "ja"; // TODO: get lang from system on initialize.
-
-    /**
-     * set the current quiz object.
-     * @param Quiz qz
-     * @return QuizGame
-     */
-    private QuizGame setCurrentQuiz(Quiz qz) {
-        qz.shuffleChoices();
-        currentQuiz = qz;
-        return this;
-    }
+    private String lang = "ja"; // TODO: get lang from system on receiveQuizzes.
 
     /**
      * get quizzes and start the game.
@@ -107,8 +37,6 @@ public class QuizGame {
         String url = QuizApiUrl.url(10);
         Log.d("Ukulele Quiz API URL", url);
         // TODO: hide the start button, until game end.
-        // this.$btnStart.hide();
-        // this.resetResults();
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
@@ -117,7 +45,7 @@ public class QuizGame {
 
                 Quizzes quizzes = Quizzes.fromJson(response);
 
-                setQuizzes(quizzes, activity).nextQuiz(activity);
+                receiveQuizzes(quizzes, activity).nextQuiz(activity);
             }
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
@@ -137,52 +65,68 @@ public class QuizGame {
     }
 
     /**
-     * get the next quiz from quizIterator.
+     * Set the quizzes and iterator of that.
+     * @param qzs
+     * @return
+     */
+    private QuizGame receiveQuizzes(Quizzes qzs, MainActivity ac) {
+        quizzes = qzs;
+        quizzes.getResults().setActivity(ac).reset();
+        return this;
+    }
+
+    /**
+     * Show next quiz if exists, if not exists then finish the game.
+     * @param activity
      */
     public void nextQuiz(final MainActivity activity) {
         if (quizzes.hasNext()) {
-            Quiz quiz = quizzes.next();
-            Log.d("nextQuiz", quiz.toString());
-            setCurrentQuiz(quiz).showQuiz(activity);
+            quizzes.next();
+            showQuiz(activity);
         } else {
-            // TODO: finish the game and show results.
-            TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
-            quizDisplay.setText("TODO: finish the game and show results.");
-            // this.closeResults();
-
+            finish(activity);
         }
     }
 
     /**
-     * show the current quiz.
+     * Show the current quiz.
      * @param activity
      */
-    private void showQuiz(final MainActivity activity) {
-        TextView quizDisplay = (TextView)activity.findViewById(R.id.quiz_display);
-        ListView choicesList = (ListView)activity.findViewById(R.id.choices_list);
+    private QuizGame showQuiz(final MainActivity activity) {
+        Quiz currentQuiz = quizzes.current();
+        // quiz body
         String quizBody = currentQuiz.setLang(lang).getBody();
-        quizDisplay.setText(quizBody);
+        activity.vh.quizDisplay.setText(quizBody);
+        // quiz choices
         ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
-        for (Quiz.Choice choice: currentQuiz.getChoices()) {
-            adapter.add(choice);
-        }
-
-        choicesList.setAdapter(adapter);
-        choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
+        adapter.receiveQuiz(currentQuiz);
+        activity.vh.choicesList.setAdapter(adapter);
+        // choice selected event
+        activity.vh.choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ListView listView = (ListView) parent;
                 // receive user's answer.
                 Quiz.Choice choice = (Quiz.Choice)listView.getItemAtPosition(position);
-                Integer point = choice.getPoint();
-                Log.d("onItemClick: ", String.valueOf(point));
-
-                quizzes.getResults().addPoint(point);
+                quizzes.getResults().calcPoint(choice);
                 nextQuiz(activity);
             }
         });
 
-        // TODO: show current quiz.
+        return this;
+    }
 
+    /**
+     * Finish the game and show results.
+     * @param activity
+     * @return
+     */
+    private QuizGame finish(final MainActivity activity) {
+        // TODO: finish the game and show results.
+        activity.vh.quizDisplay.setText("TODO: finish the game and show results.");
+
+        ChoiceListAdapter adapter = (ChoiceListAdapter)activity.vh.choicesList.getAdapter();
+        adapter.clearAndNotifyDataSetChanged();
+        return this;
     }
 
 }

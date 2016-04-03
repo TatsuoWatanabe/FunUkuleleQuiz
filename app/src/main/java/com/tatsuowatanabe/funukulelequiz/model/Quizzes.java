@@ -20,7 +20,8 @@ public class Quizzes {
     public ArrayList<Quiz> quizArrayList;
     private transient Iterator<Quiz> quizIterator;
     /** @see http://www.javacreed.com/gson-annotations-example/ */
-    private transient QuizResults results = null;
+    private transient QuizResults results;
+    private transient Quiz currentQuiz;
 
     /**
      * factory method. create self instance from json.
@@ -52,7 +53,17 @@ public class Quizzes {
      * @see #hasNext
      */
     public Quiz next() {
-        return getQuizIterator().next();
+        currentQuiz = getQuizIterator().next();
+        currentQuiz.shuffleChoices();
+        return currentQuiz;
+    }
+
+    /**
+     * Returns the current Quiz.
+     * @return
+     */
+    public Quiz current() {
+        return currentQuiz;
     }
 
     @Override

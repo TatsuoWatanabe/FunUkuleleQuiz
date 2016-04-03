@@ -67,7 +67,6 @@ public class Quiz {
         return TextUtils.join("\n", gson.toJson(this).split(","));
     }
 
-
     /**
      * inner class for choices of Quiz.
      */

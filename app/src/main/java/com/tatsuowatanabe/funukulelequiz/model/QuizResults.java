@@ -1,6 +1,5 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
@@ -17,14 +16,14 @@ public class QuizResults {
     public QuizResults() { }
 
     /**
-     * add the point.
-     * @param additionalPoint
+     * Add the point of selected choice.
+     * @param selectedChoice
      * @return int
      */
-    public int addPoint(int additionalPoint) {
-        point += additionalPoint;
+    public QuizResults calcPoint(Quiz.Choice selectedChoice) {
+        point += selectedChoice.getPoint();
         display();
-        return point;
+        return this;
     }
 
     /**
@@ -50,8 +49,7 @@ public class QuizResults {
     public QuizResults display() {
         if (!(activity instanceof MainActivity)) { return this; }
 
-        TextView pointDisplay = (TextView)activity.findViewById(R.id.point_display);
-        pointDisplay.setText(String.valueOf(point) + " pt");
+        activity.vh.pointDisplay.setText(String.valueOf(point) + " pt");
         return this;
     }
 

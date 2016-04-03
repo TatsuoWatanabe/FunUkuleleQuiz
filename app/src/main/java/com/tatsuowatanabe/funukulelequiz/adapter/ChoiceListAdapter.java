@@ -26,6 +26,28 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
         packageManager = context.getPackageManager();
     }
 
+    /**
+     * Receive the quiz object and set list to it's choices.
+     * @param quiz
+     * @return
+     */
+    public ChoiceListAdapter receiveQuiz(Quiz quiz) {
+        for (Quiz.Choice choice: quiz.getChoices()) {
+            this.add(choice);
+        }
+        return this;
+    }
+
+    /**
+     * clear the adapter and notify dataset changed.
+     * @return
+     */
+    public ChoiceListAdapter clearAndNotifyDataSetChanged() {
+        clear();
+        notifyDataSetChanged();
+        return this;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {

@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -36,25 +38,28 @@ public class MainActivity extends AppCompatActivity {
      */
     private final QuizGame game = new QuizGame();
 
+    /**
+     * Holder of activity view resource.
+     */
+    public ViewHolder vh;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        vh = new ViewHolder();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(vh.toolbar);
         mQueue = Volley.newRequestQueue(this);
 
         // floating action button
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        vh.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
 
         // floating action button
-        FloatingActionButton fabNext = (FloatingActionButton)findViewById(R.id.fab_next);
-        fabNext.setOnClickListener(new View.OnClickListener() {
+        vh.fabNext.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { nextQuiz(); }
         });
 
@@ -108,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
     }
 
-
     /**
      * 現在日時をyyyy/MM/dd HH:mm:ss形式で取得する.<br>
      */
@@ -116,6 +120,18 @@ public class MainActivity extends AppCompatActivity {
         final DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         final Date date = new Date(System.currentTimeMillis());
         return df.format(date);
+    }
+
+    /**
+     * Holder class of activity view resource.
+     */
+    public class ViewHolder {
+        public final Toolbar              toolbar      = (Toolbar) findViewById(R.id.toolbar);
+        public final FloatingActionButton fab          = (FloatingActionButton)findViewById(R.id.fab);
+        public final FloatingActionButton fabNext      = (FloatingActionButton)findViewById(R.id.fab_next);
+        public final TextView             quizDisplay  = (TextView)findViewById(R.id.quiz_display);
+        public final TextView             pointDisplay = (TextView)findViewById(R.id.point_display);
+        public final ListView             choicesList  = (ListView)findViewById(R.id.choices_list);
     }
 
 }
