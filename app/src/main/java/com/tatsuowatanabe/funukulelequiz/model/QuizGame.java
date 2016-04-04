@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -13,7 +12,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
-import com.tatsuowatanabe.funukulelequiz.R;
 import com.tatsuowatanabe.funukulelequiz.adapter.ChoiceListAdapter;
 
 import org.json.JSONArray;
@@ -125,7 +123,7 @@ public class QuizGame {
         activity.vh.quizDisplay.setText("TODO: finish the game and show results.");
 
         ChoiceListAdapter adapter = (ChoiceListAdapter)activity.vh.choicesList.getAdapter();
-        adapter.clearAndNotifyDataSetChanged();
+        adapter.clearSelf().notifyDataSetChanged();
         return this;
     }
 

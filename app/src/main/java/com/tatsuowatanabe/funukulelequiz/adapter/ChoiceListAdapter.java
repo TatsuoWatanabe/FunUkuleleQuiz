@@ -39,12 +39,10 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
     }
 
     /**
-     * clear the adapter and notify dataset changed.
-     * @return
+     * Remove all elements from the list, and returns self.
      */
-    public ChoiceListAdapter clearAndNotifyDataSetChanged() {
+    public ChoiceListAdapter clearSelf() {
         clear();
-        notifyDataSetChanged();
         return this;
     }
 
