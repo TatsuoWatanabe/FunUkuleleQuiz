@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public ViewHolder vh;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

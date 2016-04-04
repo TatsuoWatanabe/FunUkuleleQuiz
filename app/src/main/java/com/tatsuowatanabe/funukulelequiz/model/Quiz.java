@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by tatsuo on 11/25/15.
@@ -57,8 +59,13 @@ public class Quiz {
         return choices;
     }
 
-    public void shuffleChoices() {
-        // TODO: shuffle the choice.
+    /**
+     * shuffle the choices.
+     * @return
+     */
+    public ArrayList<Choice> shuffleChoices() {
+        Collections.shuffle(choices);
+        return choices;
     }
 
     @Override

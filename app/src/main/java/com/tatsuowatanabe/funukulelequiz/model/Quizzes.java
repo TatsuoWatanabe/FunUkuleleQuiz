@@ -54,7 +54,6 @@ public class Quizzes {
      */
     public Quiz next() {
         currentQuiz = getQuizIterator().next();
-        currentQuiz.shuffleChoices();
         return currentQuiz;
     }
 

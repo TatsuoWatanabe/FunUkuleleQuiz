@@ -32,7 +32,7 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
      * @return
      */
     public ChoiceListAdapter receiveQuiz(Quiz quiz) {
-        for (Quiz.Choice choice: quiz.getChoices()) {
+        for (Quiz.Choice choice: quiz.shuffleChoices()) {
             this.add(choice);
         }
         return this;
