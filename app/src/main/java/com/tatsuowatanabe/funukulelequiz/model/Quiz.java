@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -49,6 +48,16 @@ public class Quiz {
         final String body = lang.equals("ja") ? body_ja :
                             lang.equals("en") ? body_en : "";
         return body + "?";
+    }
+
+    /**
+     * returns quiz explanation in specified language.
+     * @return
+     */
+    public final String getExplanation() {
+        final String explanation = lang.equals("ja") ? explanation_ja :
+                                   lang.equals("en") ? explanation_en : "";
+        return explanation;
     }
 
     /**

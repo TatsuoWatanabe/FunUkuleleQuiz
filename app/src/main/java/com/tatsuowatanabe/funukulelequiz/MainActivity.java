@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         vh = new ViewHolder();
-
+        vh.resultArea.setVisibility(View.GONE);
         setSupportActionBar(vh.toolbar);
         mQueue = Volley.newRequestQueue(this);
 
@@ -56,11 +56,10 @@ public class MainActivity extends AppCompatActivity {
         vh.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
-
-        // floating action button
-        vh.fabNext.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(final View view) { nextQuiz(); }
-        });
+        // TODO: Show welcome message for user.
+        // TODO: show loading indicator.
+        // TODO: disable the button when loading.
+        // TODO: if network error  is occurred then load quizzes from local data.
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -73,14 +72,6 @@ public class MainActivity extends AppCompatActivity {
     public void startQuiz() {
         game.start(this, mQueue);
     }
-
-    /**
-     * show the next quiz.
-     */
-    public void nextQuiz() {
-        game.nextQuiz(this);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,12 +116,14 @@ public class MainActivity extends AppCompatActivity {
      * Holder class of activity view resource.
      */
     public class ViewHolder {
-        public final Toolbar              toolbar      = (Toolbar) findViewById(R.id.toolbar);
-        public final FloatingActionButton fab          = (FloatingActionButton)findViewById(R.id.fab);
-        public final FloatingActionButton fabNext      = (FloatingActionButton)findViewById(R.id.fab_next);
-        public final TextView             quizDisplay  = (TextView)findViewById(R.id.quiz_display);
-        public final TextView             pointDisplay = (TextView)findViewById(R.id.point_display);
-        public final ListView             choicesList  = (ListView)findViewById(R.id.choices_list);
+        public final Toolbar              toolbar       = (Toolbar)findViewById(R.id.toolbar);
+        public final FloatingActionButton fab           = (FloatingActionButton)findViewById(R.id.fab);
+        public final TextView             quizDisplay   = (TextView)findViewById(R.id.quiz_display);
+        public final TextView             pointDisplay  = (TextView)findViewById(R.id.point_display);
+        public final ListView             choicesList   = (ListView)findViewById(R.id.choices_list);
+        public final TextView             resultMessage = (TextView)findViewById(R.id.result_message);
+        public final TextView             explanation   = (TextView)findViewById(R.id.explanation);
+        public final View                 resultArea    = (View)findViewById(R.id.result_area);
     }
 
 }

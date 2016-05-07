@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/result_message"
+        android:text="合計ポイントはXXでした!!"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_weight="2"
+    />
+
+    <TextView
+        android:id="@+id/explanation"
+        android:text="解説:\nあれの語源はハワイのそれです。"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_layout1"
+        android:padding="30dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+    />
+
+</LinearLayout>

@@ -9,9 +9,12 @@
     tools:context=".MainActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_weight="0"
+    >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,17 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_info"
-    />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@android:drawable/ic_media_ff"
-    />
+        android:src="@android:drawable/ic_media_play"
+        app:backgroundTint="#00f2ff" />
 
 </android.support.design.widget.CoordinatorLayout>
