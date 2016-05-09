@@ -37,15 +37,13 @@ public class QuizGame {
     public void start(final MainActivity activity, RequestQueue que) {
         final Integer TIMEOUT_MS = (10 /* seconds */ * 1000);
         String url = QuizApiUrl.url(QuizGame.QUIZ_AMOUNT);
-        activity.vh.quizDisplay.setVisibility(View.VISIBLE);
+        activity.vh.fab.setVisibility(View.GONE);
         Log.d("Ukulele Quiz API URL", url);
-        // TODO: hide the start button, until game end.
+        // TODO: if failed to get the quizzes, load the local quizzes.
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
-
                 Log.d(" response", response.toString());
-
                 Quizzes quizzes = Quizzes.fromJson(response);
 
                 receiveQuizzes(quizzes, activity).nextQuiz(activity);
@@ -53,6 +51,8 @@ public class QuizGame {
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
             @Override public void onErrorResponse(VolleyError error) {
+                activity.vh.fab.setVisibility(View.VISIBLE);
+                activity.displayMessage("Sorry, a network error has occurred.\n" +  error.toString());
                 Log.d(" onErrorResponse", error.toString());
 
                 NetworkResponse response = error.networkResponse;
@@ -61,7 +61,6 @@ public class QuizGame {
                 if (response.statusCode == 400) {
                     String json = new String(response.data);
                     Log.d(" onErrorResponse", json);
-                    activity.displayMessage("Sorry, a network error has occurred.");
                 }
             }
         };
@@ -110,6 +109,7 @@ public class QuizGame {
         // quiz body
         final String quizBody = currentQuiz.setLang(lang).getBody();
         activity.vh.quizDisplay.setText(quizBody);
+        activity.vh.quizDisplay.setVisibility(View.VISIBLE);
         // quiz choices
         ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
         adapter.receiveQuiz(currentQuiz);
@@ -141,6 +141,7 @@ public class QuizGame {
         activity.vh.quizDisplay.setVisibility(View.GONE);
         ChoiceListAdapter adapter = (ChoiceListAdapter)activity.vh.choicesList.getAdapter();
         adapter.clearSelf().notifyDataSetChanged();
+        activity.vh.fab.setVisibility(View.VISIBLE);
         return this;
     }
 

@@ -113,7 +113,6 @@ public class QuizResults {
         return this;
     }
 
-
     /**
      * set text to TextView object on Activity.
      * @param tv

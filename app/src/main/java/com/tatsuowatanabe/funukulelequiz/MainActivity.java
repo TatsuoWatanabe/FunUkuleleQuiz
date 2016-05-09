@@ -17,10 +17,6 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.tatsuowatanabe.funukulelequiz.model.QuizGame;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 public class MainActivity extends AppCompatActivity {
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -77,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -90,26 +87,31 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_now) {
-            Toast.makeText(this, getCurrentDateTimeString(), Toast.LENGTH_LONG).show();
+        } else if (id == R.id.action_lang_en) {
+            displayMessage(R.string.lang_changed_en);
+            return true;
+        } else if (id == R.id.action_lang_ja) {
+            displayMessage(R.string.lang_changed_ja);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    //Somewhere that has access to a context
-    public void displayMessage(String toastString){
+    /**
+     * display the message
+     * @param toastString
+     */
+    public void displayMessage(String toastString) {
         Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
     }
 
     /**
-     * 現在日時をyyyy/MM/dd HH:mm:ss形式で取得する.<br>
+     * display the message
+     * @param resId
      */
-    private String getCurrentDateTimeString() {
-        final DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        final Date date = new Date(System.currentTimeMillis());
-        return df.format(date);
+    public void displayMessage(Integer resId) {
+        displayMessage(getString(resId));
     }
 
     /**
