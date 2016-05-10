@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.R;
@@ -14,7 +13,7 @@ import com.tatsuowatanabe.funukulelequiz.model.Quiz;
 
 /**
  * Created by tatsuo on 12/22/15.
- * @see http://qiita.com/yu_eguchi/items/65311af1c9fc0bff0cb0
+ * @see ://qiita.com/yu_eguchi/items/65311af1c9fc0bff0cb0
  */
 public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
     LayoutInflater mInflater;
@@ -31,9 +30,9 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
      * @param quiz
      * @return
      */
-    public ChoiceListAdapter receiveQuiz(Quiz quiz) {
-        for (Quiz.Choice choice: quiz.shuffleChoices()) {
-            this.add(choice);
+    public ChoiceListAdapter receiveQuiz(Quiz quiz, String lang) {
+        for (Quiz.Choice choice: quiz.getChoices()) {
+            this.add(choice.setLang(lang));
         }
         return this;
     }
@@ -53,12 +52,8 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
         }
 
         Quiz.Choice choice = getItem(position);
-
-        TextView tv = (TextView) convertView.findViewById(R.id.title);
-        tv.setText(choice.getBody());
-
-        tv = (TextView) convertView.findViewById(R.id.sub);
-        tv.setText(choice.getBody("en"));
+        TextView tv = (TextView)convertView.findViewById(R.id.choice_body);
+        tv.setText(choice.getBody(convertView.getContext()));
 
         // ImageView iv = (ImageView) convertView.findViewById(R.id.icon);
         // iv.setImageDrawable(convertView.getResources().getDrawable(android.R.drawable.star_on));

@@ -4,4 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="lang_changed_en">Langage changed to English.</string>
     <string name="lang_changed_ja">言語を日本語に変更しました。</string>
+    <string name="lang_en">en</string>
+    <string name="lang_ja">ja</string>
 </resources>

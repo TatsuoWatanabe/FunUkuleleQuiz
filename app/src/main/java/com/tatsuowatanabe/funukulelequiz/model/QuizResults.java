@@ -84,7 +84,7 @@ public class QuizResults {
         }
 
         if (incorrects.size() == 0) {
-            explanation = "すごい!パーフェクト！";
+            explanation = "すごい!パーフェクト！"; // TODO: literal to resource.
         } else {
             Collections.shuffle(incorrects);
             explanation = "解説:\n" + incorrects.get(0).quiz.getExplanation();
@@ -98,6 +98,7 @@ public class QuizResults {
      * @return
      */
     public QuizResults showGameResult() {
+        // TODO: literal to resource.
         setText(activity.vh.resultMessage, "合計ポイントは " + String.valueOf(point) + " ポイント でした!");
         setText(activity.vh.explanation  , getExplanation());
         activity.vh.resultArea.setVisibility(View.VISIBLE);

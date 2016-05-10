@@ -1,8 +1,10 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.tatsuowatanabe.funukulelequiz.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,12 +71,12 @@ public class Quiz {
     }
 
     /**
-     * shuffle the choices.
+     * shuffleChoices the choices.
      * @return
      */
-    public ArrayList<Choice> shuffleChoices() {
+    public Quiz shuffleChoices() {
         Collections.shuffle(choices);
-        return choices;
+        return this;
     }
 
     @Override
@@ -87,7 +89,7 @@ public class Quiz {
      * inner class for choices of Quiz.
      */
     public final class Choice {
-        private String  lang;
+        private transient String  lang;
         private String  body_ja;
         private String  body_en;
         private Integer point;
@@ -111,19 +113,14 @@ public class Quiz {
         }
 
         /**
-         * returns choice content body in language that Quiz has.
-         * @return String
-         */
-        public final String getBody() { return getBody(lang); }
-
-        /**
          * returns body of choice in specified language.
-         * @param specifiedLang
          * @return body of choice
          */
-        public final String getBody(String specifiedLang) {
-            final String body = specifiedLang.equals("ja") ? body_ja :
-                                specifiedLang.equals("en") ? body_en : "";
+        public final String getBody(Context context) {
+            final String ja   = context.getString(R.string.lang_ja);
+            final String en   = context.getString(R.string.lang_en);
+            final String body = lang.equals(ja) ? body_ja :
+                                lang.equals(en) ? body_en : "";
             return body;
         }
     }

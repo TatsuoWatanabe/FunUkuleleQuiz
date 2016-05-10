@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Game Manager Object.
      */
-    private final QuizGame game = new QuizGame();
+    private QuizGame game;
 
     /**
      * Holder of activity view resource.
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         vh = new ViewHolder();
         vh.resultArea.setVisibility(View.GONE);
         setSupportActionBar(vh.toolbar);
+        game   = new QuizGame(this);
         mQueue = Volley.newRequestQueue(this);
 
         // floating action button
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
      * start the quiz game.
      */
     public void startQuiz() {
-        game.start(this, mQueue);
+        game.start(mQueue);
     }
 
     @Override
@@ -86,12 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            // TODO: add setting of vaibrate
+            // TODO: add setting of advertisement
             return true;
         } else if (id == R.id.action_lang_en) {
-            displayMessage(R.string.lang_changed_en);
+            game.toEnglish();
             return true;
         } else if (id == R.id.action_lang_ja) {
-            displayMessage(R.string.lang_changed_ja);
+            game.toJapanese();
             return true;
         }
 
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
      * @param toastString
      */
     public void displayMessage(String toastString) {
-        Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, toastString, Toast.LENGTH_SHORT).show();
     }
 
     /**

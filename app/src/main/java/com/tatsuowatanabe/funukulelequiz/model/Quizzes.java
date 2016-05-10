@@ -3,7 +3,6 @@ package com.tatsuowatanabe.funukulelequiz.model;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
 
 import org.json.JSONArray;
 
@@ -19,7 +18,7 @@ public class Quizzes {
     private static final Gson gson = new Gson();
     public ArrayList<Quiz> quizArrayList;
     private transient Iterator<Quiz> quizIterator;
-    /** @see http://www.javacreed.com/gson-annotations-example/ */
+    /** @see ://www.javacreed.com/gson-annotations-example/ */
     private transient QuizResults results;
     private transient Quiz currentQuiz;
 
@@ -63,6 +62,17 @@ public class Quizzes {
      */
     public Quiz current() {
         return currentQuiz;
+    }
+
+    /**
+     * shuffle the inner choices.
+     * @return
+     */
+    public Quizzes shuffleChoices() {
+        for (int i = 0; i < quizArrayList.size(); i += 1) {
+            quizArrayList.get(i).shuffleChoices();
+        }
+        return this;
     }
 
     @Override
