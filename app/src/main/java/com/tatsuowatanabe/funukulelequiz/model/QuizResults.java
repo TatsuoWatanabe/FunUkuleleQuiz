@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
+import com.tatsuowatanabe.funukulelequiz.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,10 @@ public class QuizResults {
     private MainActivity activity;
     private Integer point = 0;
     private ArrayList<AnsweredQuiz> answered = new ArrayList<>();
+    private String explanation_ja   = "";
+    private String explanation_en   = "";
+    private String resultMessage_ja = "";
+    private String resultMessage_en = "";
 
     public QuizResults() { }
 
@@ -49,7 +54,11 @@ public class QuizResults {
     public QuizResults reset() {
         point = 0;
         answered.clear();
-        hideGameResult();
+        explanation_en   = "";
+        explanation_ja   = "";
+        resultMessage_en = "";
+        resultMessage_ja = "";
+        hideResultArea();
         showCurrentPoint();
         return this;
     }
@@ -75,42 +84,70 @@ public class QuizResults {
         return this;
     }
 
-    private String getExplanation() {
-        String explanation = "";
+    /**
+     * generate explanation message and keep it as member variables.
+     * @return
+     */
+    public QuizResults generateResultMessages() {
         ArrayList<AnsweredQuiz> incorrects = new ArrayList<>();
+        String ja = activity.getString(R.string.lang_ja);
+        String en = activity.getString(R.string.lang_en);
 
         for (AnsweredQuiz q : answered) {
             if (q.isIncorrect()) { incorrects.add(q); }
         }
 
         if (incorrects.size() == 0) {
-            explanation = "すごい!パーフェクト！"; // TODO: literal to resource.
+            this.explanation_ja   = "すごい!パーフェクト！"; // TODO: literal to resource.
+            this.explanation_en   = "perfect!";           // TODO: literal to resource.
         } else {
             Collections.shuffle(incorrects);
-            explanation = "解説:\n" + incorrects.get(0).quiz.getExplanation();
+            Quiz someQuiz = incorrects.get(0).quiz;
+            this.explanation_ja = "解説:\n"         + someQuiz.setLang(ja).getExplanation(); // TODO: literal to resource.
+            this.explanation_en = "Explanation:\n" + someQuiz.setLang(en).getExplanation(); // TODO: literal to resource.
         }
 
-        return explanation;
+        // TODO: Use the getString format resource.
+        this.resultMessage_ja = "合計ポイントは "   + String.valueOf(point) + " ポイント でした!"; // TODO: literal to resource.
+        this.resultMessage_en = "Total point is " + String.valueOf(point) + " pt!";            // TODO: literal to resource.
+
+        return this;
     }
 
     /**
      * show result of one game.
      * @return
      */
-    public QuizResults showGameResult() {
-        // TODO: literal to resource.
-        setText(activity.vh.resultMessage, "合計ポイントは " + String.valueOf(point) + " ポイント でした!");
-        setText(activity.vh.explanation  , getExplanation());
-        activity.vh.resultArea.setVisibility(View.VISIBLE);
+    public QuizResults setMessageOf(String lang) {
+        String ja = activity.getString(R.string.lang_ja);
+        String en = activity.getString(R.string.lang_en);
+
+        String resultMessage = lang.equals(ja) ? resultMessage_ja :
+                               lang.equals(en) ? resultMessage_en : "";
+        String explanation   = lang.equals(ja) ? explanation_ja   :
+                               lang.equals(en) ? explanation_en   : "";
+
+        setText(activity.vh.resultMessage, resultMessage);
+        setText(activity.vh.explanation  , explanation);
+
         return this;
     }
 
     /**
-     * hide result of one game.
+     * hide the result area.
      * @return
      */
-    public QuizResults hideGameResult() {
+    public QuizResults hideResultArea() {
         activity.vh.resultArea.setVisibility(View.GONE);
+        return this;
+    }
+
+    /**
+     * show the result area.
+     * @return
+     */
+    public QuizResults showResultArea() {
+        activity.vh.resultArea.setVisibility(View.VISIBLE);
         return this;
     }
 

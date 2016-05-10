@@ -50,7 +50,7 @@ public class QuizGame {
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
                 Log.d(" response", response.toString());
-                Quizzes quizzes = Quizzes.fromJson(response).shuffleChoices();
+                Quizzes quizzes = Quizzes.fromJson(response).setContext(activity).shuffleChoices();
                 receiveQuizzes(quizzes).nextQuiz(activity);
             }
         };
@@ -136,6 +136,7 @@ public class QuizGame {
         this.lang = activity.getString(specifiedLang);
         // TODO: show the should show. not show the should not show.
         showQuiz();
+        quizzes.getResults().setMessageOf(lang);
         return this;
     }
 
@@ -152,14 +153,14 @@ public class QuizGame {
      * Show the current quiz.
      */
     private QuizGame showQuiz() {
-        Quiz currentQuiz = quizzes.current();
+        Quiz currentQuiz = quizzes.current().setLang(lang);
 
         // quiz body
-        final String quizBody = currentQuiz.setLang(lang).getBody();
+        final String quizBody = currentQuiz.getBody();
         activity.vh.quizDisplay.setText(quizBody);
         // quiz choices
         ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
-        adapter.receiveQuiz(currentQuiz, lang);
+        adapter.receiveQuiz(currentQuiz);
         activity.vh.choicesList.setAdapter(adapter);
         // choice selected event
         activity.vh.choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -182,10 +183,11 @@ public class QuizGame {
      */
     private QuizGame finish(final MainActivity activity) {
         QuizResults results = quizzes.getResults();
-        results.showGameResult();
+        results.generateResultMessages().setMessageOf(lang).showResultArea();
         activity.vh.quizDisplay.setVisibility(View.GONE);
         activity.vh.choicesList.setVisibility(View.GONE);
         activity.vh.fab.setVisibility(View.VISIBLE);
+
         return this;
     }
 

@@ -30,7 +30,8 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
      * @param quiz
      * @return
      */
-    public ChoiceListAdapter receiveQuiz(Quiz quiz, String lang) {
+    public ChoiceListAdapter receiveQuiz(Quiz quiz) {
+        final String lang = quiz.getLang();
         for (Quiz.Choice choice: quiz.getChoices()) {
             this.add(choice.setLang(lang));
         }

@@ -14,20 +14,13 @@ import java.util.Collections;
  * Quiz Object Class.
  */
 public class Quiz {
-    private String lang;
     private String body_ja;
     private String body_en;
     private String explanation_ja;
     private String explanation_en;
     private ArrayList<Choice> choices;
-
-    /**
-     * returns specified language of quiz.
-     * @return language
-     */
-    private final String getLang() {
-        return this.lang;
-    }
+    private transient String lang;
+    private transient Context context;
 
     /**
      * set the specified language of quiz.
@@ -36,10 +29,43 @@ public class Quiz {
      */
     public final Quiz setLang(String lang) {
         this.lang = lang;
-        for(Choice choice: choices) {
-            choice.setLang(lang);
-        }
         return this;
+    }
+
+    /**
+     * get the language of quiz.
+     * @return Quiz
+     */
+    public final String getLang() {
+        return this.lang;
+    }
+
+    /**
+     * set the context object
+     * @param cont
+     * @return
+     */
+    public final Quiz setContext(Context cont) {
+        this.context = cont;
+        return this;
+    }
+
+    /**
+     * returns whether the quiz langage is Japanese or not.
+     * @return
+     */
+    private final boolean isJapanese() {
+        String ja = context.getString(R.string.lang_ja);
+        return lang.equals(ja);
+    }
+
+    /**
+     * returns whether the quiz langage is English or not.
+     * @return
+     */
+    private final boolean isEnglish() {
+        String en = context.getString(R.string.lang_en);
+        return lang.equals(en);
     }
 
     /**
@@ -47,8 +73,8 @@ public class Quiz {
      * @return
      */
     public final String getBody() {
-        final String body = lang.equals("ja") ? body_ja :
-                            lang.equals("en") ? body_en : "";
+        final String body = this.isJapanese() ? body_ja :
+                            this.isEnglish()  ? body_en : "";
         return body + "?";
     }
 
@@ -57,8 +83,8 @@ public class Quiz {
      * @return
      */
     public final String getExplanation() {
-        final String explanation = lang.equals("ja") ? explanation_ja :
-                                   lang.equals("en") ? explanation_en : "";
+        final String explanation = this.isJapanese() ? explanation_ja :
+                                   this.isEnglish()  ? explanation_en : "";
         return explanation;
     }
 
@@ -89,11 +115,10 @@ public class Quiz {
      * inner class for choices of Quiz.
      */
     public final class Choice {
-        private transient String  lang;
         private String  body_ja;
         private String  body_en;
         private Integer point;
-
+        private transient String  lang;
         /**
          * set the specified language of quiz.
          * @param lang

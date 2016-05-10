@@ -1,5 +1,6 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -71,6 +72,17 @@ public class Quizzes {
     public Quizzes shuffleChoices() {
         for (int i = 0; i < quizArrayList.size(); i += 1) {
             quizArrayList.get(i).shuffleChoices();
+        }
+        return this;
+    }
+
+    /**
+     * set the context to each quiz.
+     * @return
+     */
+    public Quizzes setContext(Context cont) {
+        for (int i = 0; i < quizArrayList.size(); i += 1) {
+            quizArrayList.get(i).setContext(cont);
         }
         return this;
     }
