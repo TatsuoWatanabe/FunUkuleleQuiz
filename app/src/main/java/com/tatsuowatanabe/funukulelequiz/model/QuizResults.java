@@ -1,7 +1,7 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
 import com.tatsuowatanabe.funukulelequiz.R;
@@ -16,7 +16,7 @@ import java.util.Collections;
 public class QuizResults {
     private MainActivity activity;
     private Integer point = 0;
-    private ArrayList<AnsweredQuiz> answered = new ArrayList<>();
+    private ArrayList<AnsweredQuiz> answeredes = new ArrayList<>();
     private String explanation_ja   = "";
     private String explanation_en   = "";
     private String resultMessage_ja = "";
@@ -26,11 +26,11 @@ public class QuizResults {
 
     /**
      * Add the point of selected choice.
-     * @param selectedChoice
+     * @param pointOfOneAnswer
      * @return int
      */
-    private QuizResults addPoint(Quiz.Choice selectedChoice) {
-        point += selectedChoice.getPoint();
+    private QuizResults addPoint(Integer pointOfOneAnswer) {
+        point += pointOfOneAnswer;
         showCurrentPoint();
         return this;
     }
@@ -42,8 +42,17 @@ public class QuizResults {
      * @return
      */
     public QuizResults receiveAnswer(Quiz.Choice selectedChoice, Quiz quiz) {
-        addPoint(selectedChoice);
-        answered.add(new AnsweredQuiz(quiz, selectedChoice.getPoint()));
+        AnsweredQuiz answeredQuiz = new AnsweredQuiz(quiz, selectedChoice.getPoint());
+
+        if (answeredQuiz.isCorrect()) {
+            // TODO: Show correct color effect.
+        } else {
+            // TODO: Show incorrect color effect.
+        }
+        // TODO: Set progress to progress bar.
+
+        addPoint(answeredQuiz.getPoint());
+        answeredes.add(answeredQuiz);
         return this;
     }
 
@@ -52,8 +61,8 @@ public class QuizResults {
      * @return
      */
     public QuizResults reset() {
-        point = 0;
-        answered.clear();
+        answeredes.clear();
+        point            = 0;
         explanation_en   = "";
         explanation_ja   = "";
         resultMessage_en = "";
@@ -78,9 +87,9 @@ public class QuizResults {
      * @return
      */
     private QuizResults showCurrentPoint() {
-        if (!(activity instanceof MainActivity)) { return this; }
-
-        activity.vh.pointDisplay.setText(String.valueOf(point) + " pt");
+        String formattedPoints = activity.getString(R.string.points, point);
+        Log.d("formatted points: ", formattedPoints);
+        activity.vh.pointDisplay.setText(formattedPoints);
         return this;
     }
 
@@ -93,23 +102,22 @@ public class QuizResults {
         String ja = activity.getString(R.string.lang_ja);
         String en = activity.getString(R.string.lang_en);
 
-        for (AnsweredQuiz q : answered) {
+        for (AnsweredQuiz q : answeredes) {
             if (q.isIncorrect()) { incorrects.add(q); }
         }
 
         if (incorrects.size() == 0) {
-            this.explanation_ja   = "すごい!パーフェクト！"; // TODO: literal to resource.
-            this.explanation_en   = "perfect!";           // TODO: literal to resource.
+            this.explanation_ja = activity.getString(R.string.msg_perfect_ja);
+            this.explanation_en = activity.getString(R.string.msg_perfect_en);
         } else {
             Collections.shuffle(incorrects);
             Quiz someQuiz = incorrects.get(0).quiz;
-            this.explanation_ja = "解説:\n"         + someQuiz.setLang(ja).getExplanation(); // TODO: literal to resource.
-            this.explanation_en = "Explanation:\n" + someQuiz.setLang(en).getExplanation(); // TODO: literal to resource.
+            this.explanation_ja = activity.getString(R.string.msg_explanation_ja, someQuiz.setLang(ja).getExplanation());
+            this.explanation_en = activity.getString(R.string.msg_explanation_en, someQuiz.setLang(en).getExplanation());
         }
 
-        // TODO: Use the getString format resource.
-        this.resultMessage_ja = "合計ポイントは "   + String.valueOf(point) + " ポイント でした!"; // TODO: literal to resource.
-        this.resultMessage_en = "Total point is " + String.valueOf(point) + " pt!";            // TODO: literal to resource.
+        this.resultMessage_ja = activity.getString(R.string.msg_result_message_ja, point);
+        this.resultMessage_en = activity.getString(R.string.msg_result_message_en, point);
 
         return this;
     }
@@ -127,8 +135,8 @@ public class QuizResults {
         String explanation   = lang.equals(ja) ? explanation_ja   :
                                lang.equals(en) ? explanation_en   : "";
 
-        setText(activity.vh.resultMessage, resultMessage);
-        setText(activity.vh.explanation  , explanation);
+        activity.vh.resultMessage.setText(resultMessage);
+        activity.vh.explanation.setText(explanation);
 
         return this;
     }
@@ -151,25 +159,21 @@ public class QuizResults {
         return this;
     }
 
-    /**
-     * set text to TextView object on Activity.
-     * @param tv
-     * @param text
-     * @return
-     */
-    private QuizResults setText(TextView tv, String text) {
-        if (!(activity instanceof MainActivity)) { return this; }
-        tv.setText(text);
-        return this;
-    }
-
     private class AnsweredQuiz {
-        protected Quiz    quiz;
-        protected Integer point;
+        private Quiz    quiz;
+        private Integer point;
 
         protected AnsweredQuiz(Quiz q, Integer p) {
             this.quiz  = q;
             this.point = p;
+        }
+
+        /**
+         * get the result point.
+         * @return
+         */
+        protected Integer getPoint() {
+            return point;
         }
 
         /**

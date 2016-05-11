@@ -18,22 +18,33 @@ import com.tatsuowatanabe.funukulelequiz.adapter.ChoiceListAdapter;
 
 import org.json.JSONArray;
 
+import java.util.Locale;
+
 /**
  * Created by tatsuo on 11/29/15.
  * Quiz game management class.
  */
 public class QuizGame {
     //** amount of quizzes at one game. */
-    private static final int QUIZ_AMOUNT = 10;
+    private static final Integer QUIZ_AMOUNT = 10;
+    /** network timeout millisecond. */
+    private static final Integer TIMEOUT_MS = (10 /* seconds */ * 1000);
     /** collection of quiz object for use in one game. */
     private Quizzes quizzes;
     /** display language setting. */
-    private String lang = "ja"; // TODO: get lang from system on receiveQuizzes.
+    private String lang = "";
     /** instance of MainActivity. */
     private MainActivity activity;
 
     public QuizGame(MainActivity ma) {
+        final String ja      = ma.getString(R.string.lang_ja);
+        final String en      = ma.getString(R.string.lang_en);
+        final String sysLang = Locale.getDefault().getLanguage();
+
         this.activity = ma;
+        if      (sysLang.equals(ja)) { this.toJapanese(); }
+        else if (sysLang.equals(en)) { this.toEnglish();  }
+        else                         { this.toEnglish();  }
     }
 
     /**
@@ -41,11 +52,10 @@ public class QuizGame {
      * @param que
      */
     public void start(RequestQueue que) {
-        final Integer TIMEOUT_MS = (10 /* seconds */ * 1000);
         String url = QuizApiUrl.url(QuizGame.QUIZ_AMOUNT);
         activity.vh.fab.setVisibility(View.GONE);
         Log.d("Ukulele Quiz API URL", url);
-        // TODO: if failed to get the quizzes, load the local quizzes.
+        // TODO: If failed to get the quizzes, load the local quizzes.
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
@@ -112,7 +122,7 @@ public class QuizGame {
      * @return
      */
     public QuizGame toJapanese() {
-        return setLang(R.string.lang_ja, R.string.lang_changed_ja);
+        return setLang(R.string.lang_ja, R.string.msg_lang_changed_ja);
     }
 
     /**
@@ -120,7 +130,7 @@ public class QuizGame {
      * @return
      */
     public QuizGame toEnglish() {
-        return setLang(R.string.lang_en, R.string.lang_changed_en);
+        return setLang(R.string.lang_en, R.string.msg_lang_changed_en);
     }
 
     /**
@@ -134,7 +144,8 @@ public class QuizGame {
         Log.d("setLang", activity.getString(msgId));
 
         this.lang = activity.getString(specifiedLang);
-        // TODO: show the should show. not show the should not show.
+        if (quizzes == null) { return this; }
+
         showQuiz();
         quizzes.getResults().setMessageOf(lang);
         return this;
@@ -154,6 +165,8 @@ public class QuizGame {
      */
     private QuizGame showQuiz() {
         Quiz currentQuiz = quizzes.current().setLang(lang);
+
+        Log.d("System language", Locale.getDefault().getLanguage());
 
         // quiz body
         final String quizBody = currentQuiz.getBody();

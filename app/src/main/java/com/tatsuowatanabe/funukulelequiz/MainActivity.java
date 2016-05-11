@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         vh = new ViewHolder();
         vh.resultArea.setVisibility(View.GONE);
+        vh.pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
         setSupportActionBar(vh.toolbar);
         game   = new QuizGame(this);
         mQueue = Volley.newRequestQueue(this);
@@ -54,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onClick(final View view) { startQuiz(); }
         });
         // TODO: Show welcome message for user.
-        // TODO: show loading indicator.
-        // TODO: disable the button when loading.
-        // TODO: if network error  is occurred then load quizzes from local data.
+        // TODO: Show loading indicator.
+        // TODO: Disable the button when loading.
+        // TODO: If network error  is occurred then load quizzes from local data.
+        // TODO: Set the progress bar of quizzes.
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            // TODO: add setting of vaibrate
-            // TODO: add setting of advertisement
+            // TODO: Add setting of vaibrate
+            // TODO: Add setting of advertisement
             return true;
         } else if (id == R.id.action_lang_en) {
             game.toEnglish();

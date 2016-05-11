@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">FunUkuleleQuiz</string>
-    <string name="points">0 pt</string>
+    <string name="points">%1$d pt</string>
     <string name="action_settings">Settings</string>
-    <string name="lang_changed_en">Langage changed to English.</string>
-    <string name="lang_changed_ja">言語を日本語に変更しました。</string>
-    <string name="lang_en">en</string>
     <string name="lang_ja">ja</string>
+    <string name="lang_en">en</string>
+    <string name="msg_lang_changed_ja">言語を日本語に変更しました。</string>
+    <string name="msg_lang_changed_en">Langage changed to English.</string>
+    <string name="msg_perfect_ja">すごい! パーフェクト！</string>
+    <string name="msg_perfect_en">Great! Perfect!</string>
+    <string name="msg_explanation_ja">解説:\n%1$s</string>
+    <string name="msg_explanation_en">explanation:\n%1$s</string>
+    <string name="msg_result_message_ja">合計ポイントは %1$d ポイント でした!</string>
+    <string name="msg_result_message_en">Total point is %1$d pt!</string>
 </resources>
