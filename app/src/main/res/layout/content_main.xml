@@ -21,6 +21,14 @@
     />
 
     <include
+        layout="@layout/welcome_area"
+        android:id="@+id/welcome_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+    />
+
+    <include
         layout="@layout/result_area"
         android:id="@+id/result_area"
         android:layout_width="match_parent"

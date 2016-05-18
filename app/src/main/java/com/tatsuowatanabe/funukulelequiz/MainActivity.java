@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         vh.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
-        // TODO: Show welcome message for user.
         // TODO: Show loading indicator.
         // TODO: Disable the button when loading.
         // TODO: If network error  is occurred then load quizzes from local data.
@@ -108,29 +107,23 @@ public class MainActivity extends AppCompatActivity {
      * @param toastString
      */
     public void displayMessage(String toastString) {
-        Toast.makeText(this, toastString, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * display the message
-     * @param resId
-     */
-    public void displayMessage(Integer resId) {
-        displayMessage(getString(resId));
+        Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
     }
 
     /**
      * Holder class of activity view resource.
      */
     public class ViewHolder {
-        public final Toolbar              toolbar       = (Toolbar)findViewById(R.id.toolbar);
-        public final FloatingActionButton fab           = (FloatingActionButton)findViewById(R.id.fab);
-        public final TextView             quizDisplay   = (TextView)findViewById(R.id.quiz_display);
-        public final TextView             pointDisplay  = (TextView)findViewById(R.id.point_display);
-        public final ListView             choicesList   = (ListView)findViewById(R.id.choices_list);
-        public final TextView             resultMessage = (TextView)findViewById(R.id.result_message);
-        public final TextView             explanation   = (TextView)findViewById(R.id.explanation);
-        public final View                 resultArea    = (View)findViewById(R.id.result_area);
+        public final Toolbar              toolbar        = (Toolbar)findViewById(R.id.toolbar);
+        public final FloatingActionButton fab            = (FloatingActionButton)findViewById(R.id.fab);
+        public final TextView             quizDisplay    = (TextView)findViewById(R.id.quiz_display);
+        public final TextView             pointDisplay   = (TextView)findViewById(R.id.point_display);
+        public final ListView             choicesList    = (ListView)findViewById(R.id.choices_list);
+        public final TextView             resultMessage  = (TextView)findViewById(R.id.result_message);
+        public final TextView             explanation    = (TextView)findViewById(R.id.explanation);
+        public final View                 resultArea     = (View)findViewById(R.id.result_area);
+        public final View                 welcomeArea    = (View)findViewById(R.id.welcome_area);
+        public final TextView             welcomeMessage = (TextView)findViewById(R.id.welcome_message);
     }
 
 }

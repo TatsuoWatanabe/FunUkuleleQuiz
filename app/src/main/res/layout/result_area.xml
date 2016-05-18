@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/result_message"
-        android:text="合計ポイントはXXでした!!"
+        android:text="@string/msg_result_message_ja"
         android:textSize="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/explanation"
-        android:text="解説:\nあれの語源はハワイのそれです。"
+        android:text="@string/msg_explanation_ja"
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -54,8 +54,10 @@ public class QuizGame {
     public void start(RequestQueue que) {
         String url = QuizApiUrl.url(QuizGame.QUIZ_AMOUNT);
         activity.vh.fab.setVisibility(View.GONE);
+
         Log.d("Ukulele Quiz API URL", url);
         // TODO: If failed to get the quizzes, load the local quizzes.
+        // TODO: Add local mode. Setting of whether load the server quizzes or not.
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
@@ -66,8 +68,10 @@ public class QuizGame {
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
             @Override public void onErrorResponse(VolleyError error) {
+                String errMsg = langIs(R.string.lang_en) ? activity.getString(R.string.msg_err_network_en, error.toString()) :
+                                langIs(R.string.lang_ja) ? activity.getString(R.string.msg_err_network_ja, error.toString()) : "";
                 activity.vh.fab.setVisibility(View.VISIBLE);
-                activity.displayMessage("Sorry, a network error has occurred.\n" +  error.toString());
+                activity.displayMessage(errMsg);
                 Log.d(" onErrorResponse", error.toString());
 
                 NetworkResponse response = error.networkResponse;
@@ -101,6 +105,7 @@ public class QuizGame {
         quizzes.getResults().setActivity(activity).reset();
         activity.vh.quizDisplay.setVisibility(View.VISIBLE);
         activity.vh.choicesList.setVisibility(View.VISIBLE);
+        activity.vh.welcomeArea.setVisibility(View.GONE);
         return this;
     }
 
@@ -111,7 +116,7 @@ public class QuizGame {
     public void nextQuiz(final MainActivity activity) {
         if (quizzes.hasNext()) {
             quizzes.next();
-            showQuiz();
+            showQuiz(this.lang);
         } else {
             finish(activity);
         }
@@ -144,10 +149,24 @@ public class QuizGame {
         Log.d("setLang", activity.getString(msgId));
 
         this.lang = activity.getString(specifiedLang);
+        setMessageOf(this.lang);
         if (quizzes == null) { return this; }
 
-        showQuiz();
+        showQuiz(this.lang);
         quizzes.getResults().setMessageOf(lang);
+        return this;
+    }
+
+    /**
+     * show message of the game.
+     * @return
+     */
+    private QuizGame setMessageOf(String lang) {
+        String ja = activity.getString(R.string.lang_ja);
+        String en = activity.getString(R.string.lang_en);
+        String welcomeMessage = lang.equals(ja) ? activity.getString(R.string.msg_welcome_ja) :
+                                lang.equals(en) ? activity.getString(R.string.msg_welcome_en) : "";
+        activity.vh.welcomeMessage.setText(welcomeMessage);
         return this;
     }
 
@@ -163,7 +182,7 @@ public class QuizGame {
     /**
      * Show the current quiz.
      */
-    private QuizGame showQuiz() {
+    private QuizGame showQuiz(String lang) {
         Quiz currentQuiz = quizzes.current().setLang(lang);
 
         Log.d("System language", Locale.getDefault().getLanguage());
