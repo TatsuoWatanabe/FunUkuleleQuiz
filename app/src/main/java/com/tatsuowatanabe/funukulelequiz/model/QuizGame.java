@@ -61,6 +61,7 @@ public class QuizGame {
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
+                activity.vh.loadingArea.setVisibility(View.GONE);
                 Log.d(" response", response.toString());
                 Quizzes quizzes = Quizzes.fromJson(response).setContext(activity).shuffleChoices();
                 receiveQuizzes(quizzes).nextQuiz(activity);
@@ -68,6 +69,7 @@ public class QuizGame {
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
             @Override public void onErrorResponse(VolleyError error) {
+                activity.vh.loadingArea.setVisibility(View.GONE);
                 String errMsg = langIs(R.string.lang_en) ? activity.getString(R.string.msg_err_network_en, error.toString()) :
                                 langIs(R.string.lang_ja) ? activity.getString(R.string.msg_err_network_ja, error.toString()) : "";
                 activity.vh.fab.setVisibility(View.VISIBLE);
@@ -92,6 +94,7 @@ public class QuizGame {
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
         Log.d(" getCurrentTimeout", String.valueOf(jsonRec.getRetryPolicy().getCurrentTimeout()) + " ms");
+        activity.vh.loadingArea.setVisibility(View.VISIBLE);
         que.add(jsonRec);
     }
 

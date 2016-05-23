@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
         vh.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
-        // TODO: Show loading indicator.
-        // TODO: Disable the button when loading.
         // TODO: If network error  is occurred then load quizzes from local data.
         // TODO: Set the progress bar of quizzes.
 
@@ -124,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         public final View                 resultArea     = (View)findViewById(R.id.result_area);
         public final View                 welcomeArea    = (View)findViewById(R.id.welcome_area);
         public final TextView             welcomeMessage = (TextView)findViewById(R.id.welcome_message);
+        public final View                 loadingArea    = (View)findViewById(R.id.loading_area);
     }
 
 }
