@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -29,9 +30,18 @@ public class Quizzes {
      * @return returns the instance.
      */
     public static Quizzes fromJson(JSONArray json) {
+        return fromJson(json.toString());
+    }
+
+    /**
+     * factory method. create self instance from json.
+     * @param json json string.
+     * @return returns the instance.
+     */
+    public static Quizzes fromJson(String json) {
         Quizzes instance = gson.fromJson(
             "{" +
-                "\"quizArrayList\": " + json.toString() +
+                "\"quizArrayList\": " + json +
             "}", Quizzes.class);
         return instance;
     }
@@ -66,13 +76,46 @@ public class Quizzes {
     }
 
     /**
+     * shuffle the Quizzes and Choices.
+     * @return
+     */
+    public Quizzes shuffle() {
+        return this.shuffleQuizzes().shuffleChoices();
+    }
+
+    /**
+     * limit the quizzes.
+     * @param limit
+     * @return
+     */
+    public Quizzes limitQuizzes(final Integer limit) {
+        if (limit < 1)                     { return this; }
+        if (limit >= quizArrayList.size()) { return this; }
+        ArrayList<Quiz> tmpQuizzes = new ArrayList<Quiz>();
+        for (int i = 0; i < limit; i += 1) {
+            tmpQuizzes.add(quizArrayList.get(i));
+        }
+        quizArrayList = tmpQuizzes;
+        return this;
+    }
+
+    /**
      * shuffle the inner choices.
      * @return
      */
-    public Quizzes shuffleChoices() {
+    private Quizzes shuffleChoices() {
         for (int i = 0; i < quizArrayList.size(); i += 1) {
             quizArrayList.get(i).shuffleChoices();
         }
+        return this;
+    }
+
+    /**
+     * shuffle the Quizzes.
+     * @return
+     */
+    private Quizzes shuffleQuizzes() {
+        Collections.shuffle(quizArrayList);
         return this;
     }
 

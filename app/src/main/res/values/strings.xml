@@ -14,6 +14,8 @@
     <string name="msg_result_message_en">Total point is %1$d pt!</string>
     <string name="msg_welcome_ja">はじめよう!\nウクレレクイズ!</string>
     <string name="msg_welcome_en">Let\'s Start!\nUkulele Quiz!</string>
-    <string name="msg_err_network_ja">インターネットでのデータ取得に失敗しました。\n%1$s</string>
-    <string name="msg_err_network_en">Sorry, a network error has occurred.\n%1$s</string>
+    <string name="msg_use_local_data_ja">ローカルデータを使用します。</string>
+    <string name="msg_use_local_data_en">Use the local data.</string>
+    <string name="msg_err_network_ja">インターネットでのデータ取得に失敗しました。\n%1$s\n%2$s</string>
+    <string name="msg_err_network_en">Sorry, a network error has occurred.\n%1$s\n%2$s</string>
 </resources>

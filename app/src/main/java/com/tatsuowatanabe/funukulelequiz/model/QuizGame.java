@@ -5,18 +5,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
 import com.tatsuowatanabe.funukulelequiz.R;
 import com.tatsuowatanabe.funukulelequiz.adapter.ChoiceListAdapter;
-
-import org.json.JSONArray;
 
 import java.util.Locale;
 
@@ -27,14 +19,15 @@ import java.util.Locale;
 public class QuizGame {
     //** amount of quizzes at one game. */
     private static final Integer QUIZ_AMOUNT = 10;
-    /** network timeout millisecond. */
-    private static final Integer TIMEOUT_MS = (10 /* seconds */ * 1000);
     /** collection of quiz object for use in one game. */
     private Quizzes quizzes;
     /** display language setting. */
     private String lang = "";
     /** instance of MainActivity. */
-    private MainActivity activity;
+    private final MainActivity activity;
+
+    /** get the MainActivity. */
+    public MainActivity getActivity() { return activity; }
 
     public QuizGame(MainActivity ma) {
         final String ja      = ma.getString(R.string.lang_ja);
@@ -52,50 +45,13 @@ public class QuizGame {
      * @param que
      */
     public void start(RequestQueue que) {
-        String url = QuizApiUrl.url(QuizGame.QUIZ_AMOUNT);
-        activity.vh.fab.setVisibility(View.GONE);
 
-        Log.d("Ukulele Quiz API URL", url);
-        // TODO: If failed to get the quizzes, load the local quizzes.
-        // TODO: Add local mode. Setting of whether load the server quizzes or not.
-
-        Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
-            @Override public void onResponse(JSONArray response) {
-                activity.vh.loadingArea.setVisibility(View.GONE);
-                Log.d(" response", response.toString());
-                Quizzes quizzes = Quizzes.fromJson(response).setContext(activity).shuffleChoices();
+        QuizzesLoader.LoadQuizzes(this, que, QUIZ_AMOUNT, new QuizzesLoader.Listener() {
+            @Override
+            public void onLoad(Quizzes quizzes) {
                 receiveQuizzes(quizzes).nextQuiz(activity);
             }
-        };
-        Response.ErrorListener resErrListener = new Response.ErrorListener() {
-            @Override public void onErrorResponse(VolleyError error) {
-                activity.vh.loadingArea.setVisibility(View.GONE);
-                String errMsg = langIs(R.string.lang_en) ? activity.getString(R.string.msg_err_network_en, error.toString()) :
-                                langIs(R.string.lang_ja) ? activity.getString(R.string.msg_err_network_ja, error.toString()) : "";
-                activity.vh.fab.setVisibility(View.VISIBLE);
-                activity.displayMessage(errMsg);
-                Log.d(" onErrorResponse", error.toString());
-
-                NetworkResponse response = error.networkResponse;
-                if (response      == null) { return; }
-                if (response.data == null) { return; }
-                if (response.statusCode == 400) {
-                    String json = new String(response.data);
-                    Log.d(" onErrorResponse", json);
-                }
-            }
-        };
-        JsonArrayRequest jsonRec = new JsonArrayRequest(Request.Method.GET, url, jsonRecListener, resErrListener);
-
-        // specify the request timeout setting.
-        jsonRec.setRetryPolicy(new DefaultRetryPolicy(
-            TIMEOUT_MS.intValue(),
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-        Log.d(" getCurrentTimeout", String.valueOf(jsonRec.getRetryPolicy().getCurrentTimeout()) + " ms");
-        activity.vh.loadingArea.setVisibility(View.VISIBLE);
-        que.add(jsonRec);
+        });
     }
 
     /**
@@ -165,10 +121,8 @@ public class QuizGame {
      * @return
      */
     private QuizGame setMessageOf(String lang) {
-        String ja = activity.getString(R.string.lang_ja);
-        String en = activity.getString(R.string.lang_en);
-        String welcomeMessage = lang.equals(ja) ? activity.getString(R.string.msg_welcome_ja) :
-                                lang.equals(en) ? activity.getString(R.string.msg_welcome_en) : "";
+        String welcomeMessage = langIs(R.string.lang_ja) ? activity.getString(R.string.msg_welcome_ja) :
+                                langIs(R.string.lang_en) ? activity.getString(R.string.msg_welcome_en) : "";
         activity.vh.welcomeMessage.setText(welcomeMessage);
         return this;
     }
@@ -178,8 +132,8 @@ public class QuizGame {
      * @param resId
      * @return
      */
-    private boolean langIs(Integer resId) {
-        return lang == activity.getString(resId);
+    public boolean langIs(Integer resId) {
+        return lang.equals(activity.getString(resId));
     }
 
     /**
