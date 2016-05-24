@@ -1,0 +1,966 @@
+[
+    {
+        "_id": "56037230ae0c2d1c099c806e",
+        "body_ja": "バンジョーウクレレの特徴はどれ",
+        "__v": 3,
+        "modified": "2015-11-10T03:29:53.662Z",
+        "created": "2015-09-24T03:46:56.942Z",
+        "random": [
+            0.2114253332838416,
+            0.1635119402781129
+        ],
+        "active": true,
+        "explanation_en": "Banjo ukulele has small banjo-type body and a ukulele neck.",
+        "explanation_ja": "バンジョーウクレレはバンジョーのボディーとウクレレのネックを持ちます。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "564164b1f824a51100dabd44",
+                "point": 10,
+                "body_en": "Small banjo-type body.",
+                "body_ja": "ボディーがバンジョー"
+            },
+            {
+                "_id": "564164b1f824a51100dabd43",
+                "point": -1,
+                "body_en": "The peg of 5th strings is the side of the neck.",
+                "body_ja": "5弦のペグがネックの横"
+            },
+            {
+                "_id": "564164b1f824a51100dabd42",
+                "point": -2,
+                "body_en": "Materials are bamboo.",
+                "body_ja": "材料が竹"
+            }
+        ],
+        "body_en": "Which is the characteristic of the banjo ukulele"
+    },
+    {
+        "_id": "55b15ed9369f67900f756e17",
+        "body_ja": "ウクレレのサイズのうち、テナーより大きいのは何というサイズ",
+        "__v": 5,
+        "modified": "2015-08-13T08:54:11.045Z",
+        "created": "2015-07-23T21:38:33.494Z",
+        "random": [
+            0.12532465998083353,
+            0.17902263742871583
+        ],
+        "active": true,
+        "explanation_en": "Ukuleles commonly come in four sizes: soprano, concert, tenor, and baritone.",
+        "explanation_ja": "ウクレレのサイズは小さいものから大きいものへと順にソプラノ、コンサート、テナー、バリトン。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "55cc5b33197095e410d14643",
+                "point": -1,
+                "body_en": "soprano",
+                "body_ja": "ソプラノ"
+            },
+            {
+                "_id": "55cc5b33197095e410d14642",
+                "point": -3,
+                "body_en": "concert",
+                "body_ja": "コンサート"
+            },
+            {
+                "_id": "55cc5b33197095e410d14641",
+                "point": 8,
+                "body_en": "baritone",
+                "body_ja": "バリトン"
+            }
+        ],
+        "body_en": "In the size of the ukulele, what size is it to be bigger than tenor"
+    },
+    {
+        "_id": "5631967e0cc95d110073784c",
+        "body_ja": "ダダリオ社がアキーラ社と共同開発した弦の素材はどれ",
+        "__v": 3,
+        "modified": "2015-11-04T03:48:13.415Z",
+        "created": "2015-10-29T03:46:06.720Z",
+        "random": [
+            0.1818807260133326,
+            0.23939533927477896
+        ],
+        "active": true,
+        "explanation_en": "The material of the string that Dadario company and Aquila company developed jointly is Nyltech.",
+        "explanation_ja": "ダダリオ社がアキーラ社と共同開発した弦の素材はナイルテックです。",
+        "categories": [],
+        "choices": [
+            {
+                "_id": "56397ffd6714a41100107781",
+                "point": 10,
+                "body_en": "Nyltech",
+                "body_ja": "ナイルテック"
+            },
+            {
+                "_id": "56397ffd6714a41100107780",
+                "point": -3,
+                "body_en": "Nylgut",
+                "body_ja": "ナイルガット"
+            },
+            {
+                "_id": "56397ffd6714a4110010777f",
+                "point": -8,
+                "body_en": "Fluorocarbon",
+                "body_ja": "フロロカーボン"
+            }
+        ],
+        "body_en": "Which is the material of the string that Dadario company and Aquila company developed jointly"
+    },
+    {
+        "_id": "56c3ea7ff449a011001662f9",
+        "body_ja": "ウクレレ弦のメーカーとして有名な \"ヒロ\" とはどういう意味",
+        "__v": 4,
+        "modified": "2016-02-17T03:50:54.181Z",
+        "created": "2016-02-17T03:35:27.950Z",
+        "random": [
+            0.24993212753906846,
+            0.36964055174030364
+        ],
+        "active": true,
+        "explanation_en": "\"Hilo\" means the Twist or Braid in Hawaiian.\r\nAnd it is the name of the Hawaii Island coast city.",
+        "explanation_ja": "\"ヒロ\" はハワイ語で、編む、結ぶという意味です。\r\nハワイ島沿岸都市の名前でもあります。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            },
+            {
+                "_id": "562ad8aa2e713c1100faffcf",
+                "__v": 0,
+                "modified": "2015-10-24T01:02:34.296Z",
+                "created": "2015-10-24T01:02:34.292Z",
+                "note": "ウクレレの弦について",
+                "name_en": "String",
+                "name_ja": "弦"
+            },
+            {
+                "_id": "564db7402936fb1100d200dd",
+                "__v": 0,
+                "modified": "2015-11-19T11:49:20.768Z",
+                "created": "2015-11-19T11:49:20.767Z",
+                "note": "ハワイアン・ハワイ語について",
+                "name_en": "Hawaiian",
+                "name_ja": "ハワイアン"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "56c3ee1ef449a01100166310",
+                "point": 11,
+                "body_en": "Twist, Braid",
+                "body_ja": "編む、結ぶ"
+            },
+            {
+                "_id": "56c3ee1ef449a0110016630f",
+                "point": -3,
+                "body_en": "Soldier,  Brave",
+                "body_ja": "戦士、勇気"
+            },
+            {
+                "_id": "56c3ee1ef449a0110016630e",
+                "point": -5,
+                "body_en": "Family, Friends",
+                "body_ja": "家族、仲間"
+            }
+        ],
+        "body_en": "What do you mean in \"Hilo\" which is famous as the name of the ukulele strings maker"
+    },
+    {
+        "_id": "55b40983a51bf28c1370051e",
+        "body_ja": "ウクレレのサイズのうち、ソプラノより2inch(約5センチ)スケールが大きいのはなんというサイズ",
+        "__v": 6,
+        "modified": "2015-10-03T22:34:45.432Z",
+        "created": "2015-07-25T22:11:15.922Z",
+        "random": [
+            0.5567831539083272,
+            0.09850517427548766
+        ],
+        "active": true,
+        "explanation_en": "It is concert size that 2inch( approximately 5 centimeters) is larger-scale than a soprano.",
+        "explanation_ja": "ソプラノより2inch(約5センチ)スケールが大きいのはコンサートサイズです。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "56105805acb06a600d4ddcfa",
+                "point": 11,
+                "body_en": "concert",
+                "body_ja": "コンサート"
+            },
+            {
+                "_id": "56105805acb06a600d4ddcf9",
+                "point": -3,
+                "body_en": "tenor",
+                "body_ja": "テナー"
+            },
+            {
+                "_id": "56105805acb06a600d4ddcf8",
+                "point": -10,
+                "body_en": "baritone",
+                "body_ja": "バリトン"
+            }
+        ],
+        "body_en": "In the size of the ukulele, what size is it that 2inch( approximately 5 centimeters) is larger-scale than a soprano"
+    },
+    {
+        "_id": "56416835f824a51100dabd47",
+        "body_ja": "ギターをウクレレのチューニングにする場合、カポタストを付けるのは第何フレット",
+        "__v": 5,
+        "modified": "2015-11-11T03:48:38.748Z",
+        "created": "2015-11-10T03:44:53.286Z",
+        "random": [
+            0.598949579987675,
+            0.044980626087635756
+        ],
+        "active": true,
+        "explanation_en": "When attach capotasto to 5th fret of guitar, the tuning of 1-4 strings becomes same tuning of Low-G ukulele.",
+        "explanation_ja": "ギターの第5フレットにカポタストを付けると、1〜4弦がLow-Gのウクレレと同じチューニングになります。",
+        "categories": [
+            {
+                "_id": "5601919f10ddd6b010d4a733",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:31.129Z",
+                "created": "2015-09-22T17:36:31.129Z",
+                "note": "ウクレレのチューニングについて",
+                "name_en": "Tuning",
+                "name_ja": "チューニング"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5642ba96b2d4111100b365a9",
+                "point": 10,
+                "body_en": "5",
+                "body_ja": "5"
+            },
+            {
+                "_id": "5642ba96b2d4111100b365a8",
+                "point": -4,
+                "body_en": "3",
+                "body_ja": "3"
+            },
+            {
+                "_id": "5642ba96b2d4111100b365a7",
+                "point": -1,
+                "body_en": "7",
+                "body_ja": "7"
+            }
+        ],
+        "body_en": "When makes a guitar the tuning of the ukulele, what number fret is to attach capotasto"
+    },
+    {
+        "_id": "564d4396ace8a71100d5dca2",
+        "body_ja": "ウクレレの装飾に使われる\"レホ\"とはどういう意味",
+        "__v": 4,
+        "modified": "2015-11-19T11:50:26.251Z",
+        "created": "2015-11-19T03:35:50.184Z",
+        "random": [
+            0.6681616213172674,
+            0.028302927035838366
+        ],
+        "active": true,
+        "explanation_en": "\"Leho\" means the Shell in Hawaiian.",
+        "explanation_ja": "\"レホ\" はハワイ語で貝殻という意味です。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            },
+            {
+                "_id": "564db7402936fb1100d200dd",
+                "__v": 0,
+                "modified": "2015-11-19T11:49:20.768Z",
+                "created": "2015-11-19T11:49:20.767Z",
+                "note": "ハワイアン・ハワイ語について",
+                "name_en": "Hawaiian",
+                "name_ja": "ハワイアン"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "564db7822936fb1100d200eb",
+                "point": 10,
+                "body_en": "Shell",
+                "body_ja": "貝殻"
+            },
+            {
+                "_id": "564db7822936fb1100d200ea",
+                "point": -5,
+                "body_en": "Green Sea Turtle",
+                "body_ja": "アオウミガメ"
+            },
+            {
+                "_id": "564db7822936fb1100d200e9",
+                "point": -3,
+                "body_en": "Sun",
+                "body_ja": "太陽"
+            }
+        ],
+        "body_en": "What do you mean with \"Leho\" which is often used for the decoration of the ukulele"
+    },
+    {
+        "_id": "5602597e25eacf2013dabf2e",
+        "body_ja": "バリトンウクレレの標準的なチューニングはどれ",
+        "__v": 0,
+        "modified": "2015-09-23T07:49:18.833Z",
+        "created": "2015-09-23T07:49:18.818Z",
+        "random": [
+            0.6572189510334283,
+            0.2481868991162628
+        ],
+        "active": true,
+        "explanation_en": "The baritone is usually tuned to D3 G3 B3 E4, which is the same as the highest four strings of the standard 6-string guitar.",
+        "explanation_ja": "バリトンウクレレは標準的には D3 G3 B3 E4 にチューニングされます。これは、ギターの6本の弦のうちの高音側の4本の弦と同じチューニングです。",
+        "categories": [
+            {
+                "_id": "5601919f10ddd6b010d4a733",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:31.129Z",
+                "created": "2015-09-22T17:36:31.129Z",
+                "note": "ウクレレのチューニングについて",
+                "name_en": "Tuning",
+                "name_ja": "チューニング"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5602597e25eacf2013dabf31",
+                "point": 10,
+                "body_en": "D G B E",
+                "body_ja": "D G B E"
+            },
+            {
+                "_id": "5602597e25eacf2013dabf30",
+                "point": -1,
+                "body_en": "G C E A",
+                "body_ja": "G C E A"
+            },
+            {
+                "_id": "5602597e25eacf2013dabf2f",
+                "point": -1,
+                "body_en": "A D F# B",
+                "body_ja": "A D F# B"
+            }
+        ],
+        "body_en": "Which is the standard tuning of the baritone ukulele"
+    },
+    {
+        "_id": "561f1e46f70a4b94063b180b",
+        "body_ja": "ウクレレの材料に使われるコアとはハワイ語でなんという意味",
+        "__v": 5,
+        "modified": "2015-11-19T11:50:44.185Z",
+        "created": "2015-10-15T03:32:22.843Z",
+        "random": [
+            0.25352151272818446,
+            0.5442180871032178
+        ],
+        "active": true,
+        "explanation_en": "The name of Koa in the Hawaiian language, also means brave, bold, fearless, or warrior.\r\n",
+        "explanation_ja": "コアはハワイ語で、勇気、戦士という意味があります。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            },
+            {
+                "_id": "564db7402936fb1100d200dd",
+                "__v": 0,
+                "modified": "2015-11-19T11:49:20.768Z",
+                "created": "2015-11-19T11:49:20.767Z",
+                "note": "ハワイアン・ハワイ語について",
+                "name_en": "Hawaiian",
+                "name_ja": "ハワイアン"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "564db7942936fb1100d200f0",
+                "point": 10,
+                "body_en": "Brave",
+                "body_ja": "勇気"
+            },
+            {
+                "_id": "564db7942936fb1100d200ef",
+                "point": -5,
+                "body_en": "Ancestor",
+                "body_ja": "祖先"
+            },
+            {
+                "_id": "564db7942936fb1100d200ee",
+                "point": -3,
+                "body_en": "Heart",
+                "body_ja": "心臓"
+            }
+        ],
+        "body_en": "What meaning is the Koa in Hawaiian, typically used for the materials of the ukulele"
+    },
+    {
+        "_id": "560947133b73b59009b00c96",
+        "body_ja": "ウクレレの弦は通常何本",
+        "__v": 6,
+        "modified": "2015-10-08T02:19:22.539Z",
+        "created": "2015-09-28T13:56:35.732Z",
+        "random": [
+            0.7369352993555367,
+            0.03914822288788855
+        ],
+        "active": true,
+        "explanation_en": "Typically, ukuleles have four strings.",
+        "explanation_ja": "一般的にウクレレは4本の弦を備えています。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5615d2aa5d09c6bc16951f37",
+                "point": 5,
+                "body_en": "4 strings",
+                "body_ja": "4 本"
+            },
+            {
+                "_id": "5615d2aa5d09c6bc16951f36",
+                "point": -1,
+                "body_en": "3 strings",
+                "body_ja": "3 本"
+            },
+            {
+                "_id": "5615d2aa5d09c6bc16951f35",
+                "point": -1,
+                "body_en": "6 strings",
+                "body_ja": "6 本"
+            }
+        ],
+        "body_en": "How many strings the ukulele usually have"
+    },
+    {
+        "_id": "56455a0856002111006bfe7c",
+        "body_ja": "ウクレレの装飾に使われる\"ホヌ\"とはどういう意味",
+        "__v": 6,
+        "modified": "2015-11-19T11:50:15.635Z",
+        "created": "2015-11-13T03:33:28.447Z",
+        "random": [
+            0.7514128689654171,
+            0.03971114265732467
+        ],
+        "active": true,
+        "explanation_en": "\"Honu\" means the Green Sea Turtle in Hawaiian.",
+        "explanation_ja": "\"ホヌ\" はハワイ語でウミガメという意味です。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            },
+            {
+                "_id": "564db7402936fb1100d200dd",
+                "__v": 0,
+                "modified": "2015-11-19T11:49:20.768Z",
+                "created": "2015-11-19T11:49:20.767Z",
+                "note": "ハワイアン・ハワイ語について",
+                "name_en": "Hawaiian",
+                "name_ja": "ハワイアン"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "564db7772936fb1100d200e7",
+                "point": 10,
+                "body_en": "Green Sea Turtle",
+                "body_ja": "アオウミガメ"
+            },
+            {
+                "_id": "564db7772936fb1100d200e6",
+                "point": -5,
+                "body_en": "Hibiscus",
+                "body_ja": "ハイビスカス"
+            },
+            {
+                "_id": "564db7772936fb1100d200e5",
+                "point": -3,
+                "body_en": "Sun",
+                "body_ja": "太陽"
+            }
+        ],
+        "body_en": "What do you mean with \"Honu\" which is often used for the decoration of the ukulele"
+    },
+    {
+        "_id": "55a5d72c9b12a6a0120b0fb2",
+        "body_ja": "ウクレレのサイズのうち、ソプラノとテナーの中間に位置するのは何というサイズ",
+        "__v": 34,
+        "modified": "2015-10-03T22:34:31.560Z",
+        "created": "2015-07-15T03:44:44.966Z",
+        "random": [
+            0.10685854079201818,
+            0.6210893332026899
+        ],
+        "active": true,
+        "explanation_en": "Ukuleles commonly come in four sizes: soprano, concert, tenor, and baritone.",
+        "explanation_ja": "ウクレレのサイズは小さいものから大きいものへと順にソプラノ、コンサート、テナー、バリトンです。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "561057f7acb06a600d4ddcf6",
+                "point": -1,
+                "body_en": "alto",
+                "body_ja": "アルト"
+            },
+            {
+                "_id": "561057f7acb06a600d4ddcf5",
+                "point": -3,
+                "body_en": "baritone",
+                "body_ja": "バリトン"
+            },
+            {
+                "_id": "561057f7acb06a600d4ddcf4",
+                "point": 10,
+                "body_en": "concert",
+                "body_ja": "コンサート"
+            }
+        ],
+        "body_en": "In the size of the ukulele, what size is the middle of a soprano and the tenor"
+    },
+    {
+        "_id": "560a07a87802eb5815de09d5",
+        "body_ja": "ウクレレの名前の由来はどれ",
+        "__v": 1,
+        "modified": "2015-09-29T03:48:07.867Z",
+        "created": "2015-09-29T03:38:16.460Z",
+        "random": [
+            0.8825650617945939,
+            0.134629650041461
+        ],
+        "active": true,
+        "explanation_en": "The word ukulele means \"jumping flea\" in Hawaiian.",
+        "explanation_ja": "ウクレレという言葉はハワイ語で「飛び跳ねる（lele）ノミ（ʻuku）」という意味です。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            },
+            {
+                "_id": "55b15f29d4d3920c145cf097",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:40.043Z",
+                "created": "2015-07-23T21:39:53.522Z",
+                "note": "ウクレレの歴史について",
+                "name_en": "History",
+                "name_ja": "歴史"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "560a09f77802eb5815de09da",
+                "point": 13,
+                "body_en": "jumping flea",
+                "body_ja": "飛び跳ねるノミ"
+            },
+            {
+                "_id": "560a09f77802eb5815de09d9",
+                "point": -2,
+                "body_en": "strong lion",
+                "body_ja": "強い獅子"
+            },
+            {
+                "_id": "560a09f77802eb5815de09d8",
+                "point": -1,
+                "body_en": "beautiful sea",
+                "body_ja": "美しい海"
+            }
+        ],
+        "body_en": "Which is the origin of the name of the ukulele"
+    },
+    {
+        "_id": "5610447962ea6d6816a8f3ea",
+        "body_ja": "ウクレレの名前の起源として伝承されている説はどれ",
+        "__v": 6,
+        "modified": "2015-10-03T22:35:41.507Z",
+        "created": "2015-10-03T21:11:21.103Z",
+        "random": [
+            0.028988214442506433,
+            0.7069756931159645
+        ],
+        "active": true,
+        "explanation_en": "According to Queen Liliʻuokalani, the last Hawaiian monarch, the name means “the gift that came here” from the Hawaiian words uku (gift or reward) and lele (to come).",
+        "explanation_ja": "Ukuには、「贈り物」という意味が、Leleには「やって来る」という意味もあることから、ハワイの王朝最後の女王・リリウオカラニは「ハワイにもたらされた贈り物」と解釈していたと伝えられています。",
+        "categories": [
+            {
+                "_id": "55b15f29d4d3920c145cf097",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:40.043Z",
+                "created": "2015-07-23T21:39:53.522Z",
+                "note": "ウクレレの歴史について",
+                "name_en": "History",
+                "name_ja": "歴史"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5610583dacb06a600d4ddd04",
+                "point": 12,
+                "body_en": "The name means “the gift that came here” from the Hawaiian words uku (gift or reward) and lele (to come).",
+                "body_ja": "Ukuは「贈り物」、Leleは「やって来る」ということから、「ハワイにもたらされた贈り物」という意味の名前になった"
+            },
+            {
+                "_id": "5610583dacb06a600d4ddd03",
+                "point": -4,
+                "body_en": "The name means “a terrible gift” from the Hawaiian words uku (impossible) and lele (souvenir).",
+                "body_ja": "Ukuは「むりな」、Leleは「おみやげ」ということから、「とんでもない贈り物」という意味の名前になった"
+            },
+            {
+                "_id": "5610583dacb06a600d4ddd02",
+                "point": -5,
+                "body_en": "The name means “hamburger steak and fried egg” from the Hawaiian words uku (hamburger steak) and lele (fried egg).",
+                "body_ja": "Ukuは「ハンバーグ」、Leleは「目玉焼き」ということから、「目玉焼きのせハンバーグ」という意味の名前になった"
+            }
+        ],
+        "body_en": "Which is the opinion handed down as the origin of the name of the ukulele"
+    },
+    {
+        "_id": "5613420a4cb246b0166248fd",
+        "body_ja": "Low-Gチューニングとはどんなチューニング",
+        "__v": 7,
+        "modified": "2016-05-11T10:27:54.896Z",
+        "created": "2015-10-06T03:37:46.463Z",
+        "random": [
+            0.3677904447540641,
+            0.7349720550701022
+        ],
+        "active": true,
+        "explanation_en": "Some players prefer \"Low G\" tuning, with the G in sequence an octave lower.",
+        "explanation_ja": "Low-Gは第4弦を1オクターブ下の音に合わせたチューニングです。このLow-Gを好んで使う演奏者も多いです。",
+        "categories": [
+            {
+                "_id": "5601919f10ddd6b010d4a733",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:31.129Z",
+                "created": "2015-09-22T17:36:31.129Z",
+                "note": "ウクレレのチューニングについて",
+                "name_en": "Tuning",
+                "name_ja": "チューニング"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5733092a401c3011006bccb8",
+                "point": 10,
+                "body_en": "G in sequence an octave lower",
+                "body_ja": "Gを1オクターブ下げたチューニング"
+            },
+            {
+                "_id": "5733092a401c3011006bccb7",
+                "point": -5,
+                "body_en": "The tuning that Rosie Shimabukuro used.",
+                "body_ja": "ロージー・シマブクロが使っていたチューニング"
+            },
+            {
+                "_id": "5733092a401c3011006bccb6",
+                "point": -3,
+                "body_en": "G in sequence a semitone lower",
+                "body_ja": "Gを半音下げたチューニング"
+            }
+        ],
+        "body_en": "What kind of tuning is Low-G tuning"
+    },
+    {
+        "_id": "5629ac643ce9b211009fcc41",
+        "body_ja": "アキーラ社がガット弦を人工的に再現するために開発した弦の素材をなんという",
+        "__v": 8,
+        "modified": "2015-10-24T01:10:45.004Z",
+        "created": "2015-10-23T03:41:24.467Z",
+        "random": [
+            0.8172707855701447,
+            0.4306995375081897
+        ],
+        "active": true,
+        "explanation_en": "The material of the string that reproduces a gut string artificially which developed by Aquila company is Nylgut.",
+        "explanation_ja": "アキーラ社がガット弦を人工的に再現するために開発した弦の素材はナイルガットです。",
+        "categories": [
+            {
+                "_id": "562ad8aa2e713c1100faffcf",
+                "__v": 0,
+                "modified": "2015-10-24T01:02:34.296Z",
+                "created": "2015-10-24T01:02:34.292Z",
+                "note": "ウクレレの弦について",
+                "name_en": "String",
+                "name_ja": "弦"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "562ada952e713c1100faffde",
+                "point": 10,
+                "body_en": "nylgut",
+                "body_ja": "ナイルガット"
+            },
+            {
+                "_id": "562ada942e713c1100faffdd",
+                "point": -5,
+                "body_en": "vantablack",
+                "body_ja": "ベンタブラック"
+            },
+            {
+                "_id": "562ada942e713c1100faffdc",
+                "point": -3,
+                "body_en": "fluorocarbon",
+                "body_ja": "フロロカーボン"
+            }
+        ],
+        "body_en": "What is the material of the string that reproduces a gut string artificially which developed by Aquila company"
+    },
+    {
+        "_id": "5601914e10ddd6b010d4a72f",
+        "body_ja": "ウクレレのスタンダードチューニングといえばどれ",
+        "__v": 2,
+        "modified": "2015-10-03T22:34:58.023Z",
+        "created": "2015-09-22T17:35:10.244Z",
+        "random": [
+            0.3692703968845308,
+            0.792415932752192
+        ],
+        "active": true,
+        "explanation_en": "The most popular tuning for the standard or soprano ukulele is C6-tuning: G4 C4 E4 A4.",
+        "explanation_ja": "一般的なスタンダードウクレレ(ソプラノウクレレ)のチューニングはC6 チューニング: G4 C4 E4 A4です。",
+        "categories": [
+            {
+                "_id": "5601919f10ddd6b010d4a733",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:31.129Z",
+                "created": "2015-09-22T17:36:31.129Z",
+                "note": "ウクレレのチューニングについて",
+                "name_en": "Tuning",
+                "name_ja": "チューニング"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "56105812acb06a600d4ddcfe",
+                "point": 10,
+                "body_en": "G C E A",
+                "body_ja": "G C E A"
+            },
+            {
+                "_id": "56105812acb06a600d4ddcfd",
+                "point": -1,
+                "body_en": "D G B E",
+                "body_ja": "D G B E"
+            },
+            {
+                "_id": "56105812acb06a600d4ddcfc",
+                "point": -3,
+                "body_en": "A B C D",
+                "body_ja": "A B C D"
+            }
+        ],
+        "body_en": "Which is the standard tuning of the ukulele"
+    },
+    {
+        "_id": "5601aaa752a832140ff1d178",
+        "body_ja": "くびれのない、楕円形のボディのウクレレを何という",
+        "__v": 3,
+        "modified": "2015-09-27T13:21:29.671Z",
+        "created": "2015-09-22T19:23:19.470Z",
+        "random": [
+            0.9011280671693385,
+            0.4182484485208988
+        ],
+        "active": true,
+        "explanation_en": "Non-standard shapes, such as oval shape, usually called a \"pineapple\" ukulele.",
+        "explanation_ja": "楕円形のボディのウクレレは一般的にパイナップルウクレレと呼ばれます。",
+        "categories": [
+            {
+                "_id": "55af2bb067c80c00137e7932",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:58.722Z",
+                "created": "2015-07-22T05:35:44.865Z",
+                "note": "楽器について",
+                "name_en": "Instrument",
+                "name_ja": "楽器"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5607ed59950b3378168f4a04",
+                "point": 10,
+                "body_en": "pineapple ukulele",
+                "body_ja": "パイナップル ウクレレ"
+            },
+            {
+                "_id": "5607ed59950b3378168f4a03",
+                "point": -1,
+                "body_en": "egg ukulele",
+                "body_ja": "エッグ ウクレレ"
+            },
+            {
+                "_id": "5607ed59950b3378168f4a02",
+                "point": -1,
+                "body_en": "kiwi ukulele",
+                "body_ja": "キウイ ウクレレ"
+            }
+        ],
+        "body_en": "What is the ukulele of the oval body without the constriction"
+    },
+    {
+        "_id": "5607ec97950b3378168f49fd",
+        "body_ja": "ウクレレはどこで生まれた楽器",
+        "__v": 2,
+        "modified": "2015-10-05T21:46:54.634Z",
+        "created": "2015-09-27T13:18:15.242Z",
+        "random": [
+            0.415406699758023,
+            0.8346700931433588
+        ],
+        "active": true,
+        "explanation_en": "The ukulele was born based on a Portuguese musical instrument called braguinha in Hawaii.",
+        "explanation_ja": "ウクレレは、ポルトガルから伝わったブラギーニャという楽器を起源として、ハワイで誕生しました。",
+        "categories": [
+            {
+                "_id": "55b15f29d4d3920c145cf097",
+                "__v": 0,
+                "modified": "2015-09-22T17:36:40.043Z",
+                "created": "2015-07-23T21:39:53.522Z",
+                "note": "ウクレレの歴史について",
+                "name_en": "History",
+                "name_ja": "歴史"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "5612efceb8338ba80d2ab472",
+                "point": 5,
+                "body_en": "Hawaii",
+                "body_ja": "ハワイ"
+            },
+            {
+                "_id": "5612efceb8338ba80d2ab471",
+                "point": -1,
+                "body_en": "Portugal",
+                "body_ja": "ポルトガル"
+            },
+            {
+                "_id": "5612efceb8338ba80d2ab470",
+                "point": -1,
+                "body_en": "Brazil",
+                "body_ja": "ブラジル"
+            }
+        ],
+        "body_en": "Where the ukulele was born"
+    },
+    {
+        "_id": "564db53e2936fb1100d200d2",
+        "body_ja": "ウクレレショップの名前としても有名な \"オハナ\" とはどういう意味",
+        "__v": 4,
+        "modified": "2015-11-19T11:59:37.808Z",
+        "created": "2015-11-19T11:40:46.107Z",
+        "random": [
+            0.9646876191254705,
+            0.3472821598406881
+        ],
+        "active": true,
+        "explanation_en": "\"Ohana\" means the Family or Friends in Hawaiian.",
+        "explanation_ja": "\"オハナ\" はハワイ語で、家族や友人という意味です。",
+        "categories": [
+            {
+                "_id": "564db7402936fb1100d200dd",
+                "__v": 0,
+                "modified": "2015-11-19T11:49:20.768Z",
+                "created": "2015-11-19T11:49:20.767Z",
+                "note": "ハワイアン・ハワイ語について",
+                "name_en": "Hawaiian",
+                "name_ja": "ハワイアン"
+            }
+        ],
+        "choices": [
+            {
+                "_id": "564db9a92936fb1100d200fc",
+                "point": 11,
+                "body_en": "Family, Friends",
+                "body_ja": "家族、仲間"
+            },
+            {
+                "_id": "564db9a92936fb1100d200fb",
+                "point": -5,
+                "body_en": "Thanks, Gratitude",
+                "body_ja": "ありがとう、感謝"
+            },
+            {
+                "_id": "564db9a92936fb1100d200fa",
+                "point": -5,
+                "body_en": "Brave, Soldier",
+                "body_ja": "勇敢な、兵士"
+            }
+        ],
+        "body_en": "What do you mean with \"Ohana\" which is famous as the name of the ukulele maker"
+    }
+]
