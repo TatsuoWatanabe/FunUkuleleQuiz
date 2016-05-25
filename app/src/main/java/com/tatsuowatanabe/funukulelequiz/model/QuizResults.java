@@ -43,12 +43,13 @@ public class QuizResults {
      */
     public QuizResults receiveAnswer(Quiz.Choice selectedChoice, Quiz quiz) {
         AnsweredQuiz answeredQuiz = new AnsweredQuiz(quiz, selectedChoice.getPoint());
+        Boolean useVibration = activity.getSharedPreferences().getBoolean(activity.getString(R.string.pref_key_vibration), false);
 
         if (answeredQuiz.isCorrect()) {
             // TODO: Show correct color effect.
         } else {
             // TODO: Show incorrect color effect.
-            activity.getVibrator().vibrate(100);
+            if (useVibration) { activity.getVibrator().vibrate(50); }
         }
         // TODO: Set progress to progress bar.
 

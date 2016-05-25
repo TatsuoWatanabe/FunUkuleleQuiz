@@ -25,7 +25,7 @@ public class SettingsFragment extends PreferenceFragment {
         Boolean isJa = getString(R.string.lang_ja).equals(lang);
         Boolean isEn = getString(R.string.lang_en).equals(lang);
 
-        CheckBoxPreference prefLocalMode = (CheckBoxPreference) findPreference("local_mode");
+        CheckBoxPreference prefLocalMode = (CheckBoxPreference)findPreference(getString(R.string.pref_key_local_mode));
         prefLocalMode.setTitle(getString(
             isJa ? R.string.pref_title_local_mode_ja :
             isEn ? R.string.pref_title_local_mode_en :
@@ -35,6 +35,17 @@ public class SettingsFragment extends PreferenceFragment {
             isJa ? R.string.pref_summ_local_mode_ja :
             isEn ? R.string.pref_summ_local_mode_en :
                    R.string.pref_summ_local_mode_en
+        ));
+        CheckBoxPreference prefVibration = (CheckBoxPreference)findPreference(getString(R.string.pref_key_vibration));
+        prefVibration.setTitle(getString(
+            isJa ? R.string.pref_title_vibration_ja :
+            isEn ? R.string.pref_title_vibration_en :
+                   R.string.pref_title_vibration_en
+        ));
+        prefVibration.setSummary(getString(
+            isJa ? R.string.pref_summ_vibration_ja :
+            isEn ? R.string.pref_summ_vibration_en :
+                   R.string.pref_summ_vibration_en
         ));
 
         return this;

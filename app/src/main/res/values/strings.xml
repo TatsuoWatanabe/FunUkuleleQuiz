@@ -18,7 +18,7 @@
     <string name="msg_use_local_data_en">Use the local data.</string>
     <string name="msg_err_network_ja">インターネットでのデータ取得に失敗しました。\n%1$s\n%2$s</string>
     <string name="msg_err_network_en">Sorry, a network error has occurred.\n%1$s\n%2$s</string>
-    <string name="pref_key_local_mode">local_mode</string>
+    <string name="pref_key_local_mode">Local Mode</string>
     <string name="pref_title_local_mode_ja">ローカルモード</string>
     <string name="pref_title_local_mode_en">@string/pref_key_local_mode</string>
     <string name="pref_summ_local_mode_ja">
@@ -33,5 +33,10 @@
         ※The latest quiz data will not load.
     ]]>
     </string>
+    <string name="pref_key_vibration">vibration</string>
+    <string name="pref_title_vibration_ja">バイブレーション</string>
+    <string name="pref_title_vibration_en">Vibration</string>
+    <string name="pref_summ_vibration_ja">バイブレーションによるエフェクトを使用します。</string>
+    <string name="pref_summ_vibration_en">Use an effect of vibration.</string>
 
 </resources>

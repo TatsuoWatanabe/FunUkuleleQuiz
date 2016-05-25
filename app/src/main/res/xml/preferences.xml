@@ -6,4 +6,10 @@
         android:summary="@string/pref_summ_local_mode_ja"
         android:defaultValue="false"
     />
+    <CheckBoxPreference
+        android:key="@string/pref_key_vibration"
+        android:title="@string/pref_title_vibration_ja"
+        android:summary="@string/pref_summ_vibration_ja"
+        android:defaultValue="false"
+    />
 </PreferenceScreen>
