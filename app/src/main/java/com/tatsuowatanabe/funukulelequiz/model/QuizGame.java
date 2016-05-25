@@ -45,7 +45,6 @@ public class QuizGame {
      * @param que
      */
     public void start(RequestQueue que) {
-
         QuizzesLoader.LoadQuizzes(this, que, QUIZ_AMOUNT, new QuizzesLoader.Listener() {
             @Override
             public void onLoad(Quizzes quizzes) {
@@ -95,6 +94,14 @@ public class QuizGame {
      */
     public QuizGame toEnglish() {
         return setLang(R.string.lang_en, R.string.msg_lang_changed_en);
+    }
+
+    /**
+     * get the lang.
+     * @return
+     */
+    public String getLang() {
+        return lang;
     }
 
     /**

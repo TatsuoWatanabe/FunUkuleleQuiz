@@ -35,13 +35,18 @@ public class QuizzesLoader {
     }
 
     public static final void LoadQuizzes(final QuizGame game, final RequestQueue que, final Integer quizAmount, final Listener listener) {
-        final Integer      TIMEOUT_MS = (10 /* seconds */ * 1000);
-        final MainActivity activity   = game.getActivity();
-        final String       url        = QuizzesLoader.getApiUrl(quizAmount);
+        final Integer      TIMEOUT_MS  = (10 /* seconds */ * 1000);
+        final MainActivity activity    = game.getActivity();
+        final String       url         = QuizzesLoader.getApiUrl(quizAmount);
+        final Boolean      isLocalMode = activity.getSharedPreferences().getBoolean(activity.getString(R.string.pref_key_local_mode), false);
         activity.vh.fab.setVisibility(View.GONE);
 
-        Log.d("Ukulele Quiz API URL", url);
-        // TODO: Add local mode. Setting of whether load the server quizzes or not.
+        if (isLocalMode) {
+            // start with local data.
+            Quizzes quizzes = getQuizzesFromLocalJsonFile(activity, quizAmount);
+            listener.onLoad(quizzes);
+            return;
+        }
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
@@ -72,6 +77,7 @@ public class QuizzesLoader {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
+        Log.d(" Ukulele Quiz API URL", url);
         Log.d(" getCurrentTimeout", String.valueOf(jsonRec.getRetryPolicy().getCurrentTimeout()) + " ms");
         activity.vh.loadingArea.setVisibility(View.VISIBLE);
         que.add(jsonRec); // send.

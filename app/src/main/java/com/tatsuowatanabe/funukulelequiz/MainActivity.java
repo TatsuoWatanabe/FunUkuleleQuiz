@@ -1,6 +1,9 @@
 package com.tatsuowatanabe.funukulelequiz;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.tatsuowatanabe.funukulelequiz.model.QuizGame;
+import com.tatsuowatanabe.funukulelequiz.preference.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -88,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             // TODO: Add setting of vaibrate
             // TODO: Add setting of advertisement
+            Intent settingsIntent = new android.content.Intent(this, SettingsActivity.class);
+            settingsIntent.putExtra("lang", game.getLang());
+            startActivity(settingsIntent);
             return true;
         } else if (id == R.id.action_lang_en) {
             game.toEnglish();
@@ -106,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void displayMessage(String toastString) {
         Toast.makeText(this, toastString, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * get the shared preferences.
+     * @return
+     */
+    public SharedPreferences getSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     /**
