@@ -48,6 +48,7 @@ public class QuizResults {
             // TODO: Show correct color effect.
         } else {
             // TODO: Show incorrect color effect.
+            activity.getVibrator().vibrate(100);
         }
         // TODO: Set progress to progress bar.
 

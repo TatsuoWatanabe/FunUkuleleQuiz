@@ -3,6 +3,7 @@ package com.tatsuowatanabe.funukulelequiz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
     private QuizGame game;
 
     /**
+     * Vibrator service.
+     */
+    private Vibrator vibrator;
+
+    /**
      * Holder of activity view resource.
      */
     public ViewHolder vh;
@@ -51,16 +57,17 @@ public class MainActivity extends AppCompatActivity {
         vh.resultArea.setVisibility(View.GONE);
         vh.pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
         setSupportActionBar(vh.toolbar);
-        game   = new QuizGame(this);
-        mQueue = Volley.newRequestQueue(this);
+        game     = new QuizGame(this);
+        mQueue   = Volley.newRequestQueue(this);
+        vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         // floating action button
         vh.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
-        // TODO: If network error  is occurred then load quizzes from local data.
         // TODO: Set the progress bar of quizzes.
-
+        // TODO: Add setting of vaibrate
+        // TODO: Add setting of advertisement
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -77,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
@@ -90,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            // TODO: Add setting of vaibrate
-            // TODO: Add setting of advertisement
             Intent settingsIntent = new android.content.Intent(this, SettingsActivity.class);
             settingsIntent.putExtra("lang", game.getLang());
             startActivity(settingsIntent);
@@ -121,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public SharedPreferences getSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    /**
+     * get the vibrator.
+     * @return
+     */
+    public Vibrator getVibrator() {
+        return this.vibrator;
     }
 
     /**
