@@ -24,6 +24,7 @@
         </activity>
         <activity
             android:name=".preference.SettingsActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
         />
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for

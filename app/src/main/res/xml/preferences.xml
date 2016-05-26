@@ -14,4 +14,10 @@
         android:summary="@string/pref_summ_vibration_ja"
         android:defaultValue="true"
     />
+    <CheckBoxPreference
+        android:key="@string/pref_key_color_effect"
+        android:title="@string/pref_title_color_effect_ja"
+        android:summary="@string/pref_summ_color_effect_ja"
+        android:defaultValue="true"
+    />
 </PreferenceScreen>

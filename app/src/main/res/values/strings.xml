@@ -9,7 +9,7 @@
     <string name="msg_perfect_ja">すごい! パーフェクト！</string>
     <string name="msg_perfect_en">Great! Perfect!</string>
     <string name="msg_explanation_ja">解説:\n%1$s</string>
-    <string name="msg_explanation_en">explanation:\n%1$s</string>
+    <string name="msg_explanation_en">Explanation:\n%1$s</string>
     <string name="msg_result_message_ja">合計ポイントは %1$d ポイント でした!</string>
     <string name="msg_result_message_en">Total point is %1$d pt!</string>
     <string name="msg_welcome_ja">はじめよう!\nウクレレクイズ!</string>
@@ -18,9 +18,9 @@
     <string name="msg_use_local_data_en">Use the local data.</string>
     <string name="msg_err_network_ja">インターネットでのデータ取得に失敗しました。\n%1$s\n%2$s</string>
     <string name="msg_err_network_en">Sorry, a network error has occurred.\n%1$s\n%2$s</string>
-    <string name="pref_key_local_mode">Local Mode</string>
+    <string name="pref_key_local_mode">local_mode</string>
     <string name="pref_title_local_mode_ja">ローカルモード</string>
-    <string name="pref_title_local_mode_en">@string/pref_key_local_mode</string>
+    <string name="pref_title_local_mode_en">Local Mode</string>
     <string name="pref_summ_local_mode_ja">
     <![CDATA[
         クイズをローカルデータから取得します。\n
@@ -38,5 +38,9 @@
     <string name="pref_title_vibration_en">Vibration</string>
     <string name="pref_summ_vibration_ja">バイブレーションによるエフェクトを使用します。</string>
     <string name="pref_summ_vibration_en">Use an effect of vibration.</string>
-
+    <string name="pref_key_color_effect">color_effect</string>
+    <string name="pref_title_color_effect_ja">カラーエフェクト</string>
+    <string name="pref_title_color_effect_en">Color Effect</string>
+    <string name="pref_summ_color_effect_ja">カラーエフェクトを使用します。</string>
+    <string name="pref_summ_color_effect_en">Use an effect of color.</string>
 </resources>

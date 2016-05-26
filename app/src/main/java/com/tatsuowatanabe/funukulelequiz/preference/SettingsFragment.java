@@ -47,7 +47,17 @@ public class SettingsFragment extends PreferenceFragment {
             isEn ? R.string.pref_summ_vibration_en :
                    R.string.pref_summ_vibration_en
         ));
-
+        CheckBoxPreference prefColorEffect = (CheckBoxPreference)findPreference(getString(R.string.pref_key_color_effect));
+        prefColorEffect.setTitle(getString(
+                isJa ? R.string.pref_title_color_effect_ja :
+                isEn ? R.string.pref_title_color_effect_en :
+                       R.string.pref_title_color_effect_en
+        ));
+        prefColorEffect.setSummary(getString(
+                isJa ? R.string.pref_summ_color_effect_ja :
+                isEn ? R.string.pref_summ_color_effect_en :
+                       R.string.pref_summ_color_effect_en
+        ));
         return this;
     }
 

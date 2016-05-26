@@ -2,6 +2,8 @@ package com.tatsuowatanabe.funukulelequiz.adapter;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +56,13 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
 
         Quiz.Choice choice = getItem(position);
         TextView tv = (TextView)convertView.findViewById(R.id.choice_body);
-        tv.setText(choice.getBody(convertView.getContext()));
-
-        // ImageView iv = (ImageView) convertView.findViewById(R.id.icon);
-        // iv.setImageDrawable(convertView.getResources().getDrawable(android.R.drawable.star_on));
-        // iv.setImageDrawable(convertView.applicationInfo.loadIcon(packageManager));
+        String body = choice.getBody(convertView.getContext());
+        tv.setText(body);
+        Float textSizeDp = getContext().getResources().getDimension(
+            body.length() > 100 ? R.dimen.choice_small  :
+            body.length() > 50  ? R.dimen.choice_medium : R.dimen.choice_normal
+        );
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeDp);
 
         return convertView;
     }

@@ -47,26 +47,31 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Holder of activity view resource.
      */
-    public ViewHolder vh;
+    public ViewHolder views;
+
+    /**
+     * Holder of preferences.
+     */
+    public PreferencesHolder prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        vh = new ViewHolder();
-        vh.resultArea.setVisibility(View.GONE);
-        vh.pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
-        setSupportActionBar(vh.toolbar);
+        prefs = new PreferencesHolder();
+        views = new ViewHolder();
+        views.resultArea.setVisibility(View.GONE);
+        views.pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
+        setSupportActionBar(views.toolbar);
         game     = new QuizGame(this);
         mQueue   = Volley.newRequestQueue(this);
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         // floating action button
-        vh.fab.setOnClickListener(new View.OnClickListener() {
+        views.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
         });
         // TODO: Set the progress bar of quizzes.
-        // TODO: Add setting of vaibrate
         // TODO: Add setting of advertisement
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * start the quiz game.
+     * show the quiz game.
      */
     public void startQuiz() {
         game.start(mQueue);
@@ -124,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
      * get the shared preferences.
      * @return
      */
-    public SharedPreferences getSharedPreferences() {
+    private SharedPreferences getSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -134,6 +139,16 @@ public class MainActivity extends AppCompatActivity {
      */
     public Vibrator getVibrator() {
         return this.vibrator;
+    }
+
+    /**
+     * Holder class of shared preferences.
+     */
+    public class PreferencesHolder {
+        private SharedPreferences sharedPreferences = getSharedPreferences();
+        public Boolean isLocalMode()          { return sharedPreferences.getBoolean(getString(R.string.pref_key_local_mode)  , false); }
+        public Boolean shouldUseVibration()   { return sharedPreferences.getBoolean(getString(R.string.pref_key_vibration)   , true); }
+        public Boolean shouldUseColorEffect() { return sharedPreferences.getBoolean(getString(R.string.pref_key_color_effect), true); }
     }
 
     /**
@@ -151,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         public final View                 welcomeArea    = (View)findViewById(R.id.welcome_area);
         public final TextView             welcomeMessage = (TextView)findViewById(R.id.welcome_message);
         public final View                 loadingArea    = (View)findViewById(R.id.loading_area);
+        public final View                 contentMain    = (View)findViewById(R.id.content_main);
     }
 
 }

@@ -38,11 +38,10 @@ public class QuizzesLoader {
         final Integer      TIMEOUT_MS  = (10 /* seconds */ * 1000);
         final MainActivity activity    = game.getActivity();
         final String       url         = QuizzesLoader.getApiUrl(quizAmount);
-        final Boolean      isLocalMode = activity.getSharedPreferences().getBoolean(activity.getString(R.string.pref_key_local_mode), false);
-        activity.vh.fab.setVisibility(View.GONE);
+        activity.views.fab.setVisibility(View.GONE);
 
-        if (isLocalMode) {
-            // start with local data.
+        if (activity.prefs.isLocalMode()) {
+            // show with local data.
             Quizzes quizzes = getQuizzesFromLocalJsonFile(activity, quizAmount);
             listener.onLoad(quizzes);
             return;
@@ -50,7 +49,7 @@ public class QuizzesLoader {
 
         Response.Listener<JSONArray> jsonRecListener = new Response.Listener<JSONArray>() {
             @Override public void onResponse(JSONArray response) {
-                activity.vh.loadingArea.setVisibility(View.GONE);
+                activity.views.loadingArea.setVisibility(View.GONE);
                 Log.d(" response", response.toString());
                 Quizzes quizzes = Quizzes.fromJson(response).setContext(activity).shuffle();
                 listener.onLoad(quizzes);
@@ -58,7 +57,7 @@ public class QuizzesLoader {
         };
         Response.ErrorListener resErrListener = new Response.ErrorListener() {
             @Override public void onErrorResponse(VolleyError error) {
-                activity.vh.loadingArea.setVisibility(View.GONE);
+                activity.views.loadingArea.setVisibility(View.GONE);
                 String errMsg = game.langIs(R.string.lang_ja) ? activity.getString(R.string.msg_err_network_ja, error.toString(), activity.getString(R.string.msg_use_local_data_ja)) :
                                 game.langIs(R.string.lang_en) ? activity.getString(R.string.msg_err_network_en, error.toString(), activity.getString(R.string.msg_use_local_data_en)) : "";
                 activity.displayMessage(errMsg);
@@ -79,7 +78,7 @@ public class QuizzesLoader {
         ));
         Log.d(" Ukulele Quiz API URL", url);
         Log.d(" getCurrentTimeout", String.valueOf(jsonRec.getRetryPolicy().getCurrentTimeout()) + " ms");
-        activity.vh.loadingArea.setVisibility(View.VISIBLE);
+        activity.views.loadingArea.setVisibility(View.VISIBLE);
         que.add(jsonRec); // send.
     }
 

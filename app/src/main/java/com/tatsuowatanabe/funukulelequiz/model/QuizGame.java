@@ -41,7 +41,7 @@ public class QuizGame {
     }
 
     /**
-     * get quizzes and start the game.
+     * get quizzes and show the game.
      * @param que
      */
     public void start(RequestQueue que) {
@@ -61,9 +61,9 @@ public class QuizGame {
     private QuizGame receiveQuizzes(Quizzes qzs) {
         quizzes = qzs;
         quizzes.getResults().setActivity(activity).reset();
-        activity.vh.quizDisplay.setVisibility(View.VISIBLE);
-        activity.vh.choicesList.setVisibility(View.VISIBLE);
-        activity.vh.welcomeArea.setVisibility(View.GONE);
+        activity.views.quizDisplay.setVisibility(View.VISIBLE);
+        activity.views.choicesList.setVisibility(View.VISIBLE);
+        activity.views.welcomeArea.setVisibility(View.GONE);
         return this;
     }
 
@@ -130,7 +130,7 @@ public class QuizGame {
     private QuizGame setMessageOf(String lang) {
         String welcomeMessage = langIs(R.string.lang_ja) ? activity.getString(R.string.msg_welcome_ja) :
                                 langIs(R.string.lang_en) ? activity.getString(R.string.msg_welcome_en) : "";
-        activity.vh.welcomeMessage.setText(welcomeMessage);
+        activity.views.welcomeMessage.setText(welcomeMessage);
         return this;
     }
 
@@ -153,13 +153,13 @@ public class QuizGame {
 
         // quiz body
         final String quizBody = currentQuiz.getBody();
-        activity.vh.quizDisplay.setText(quizBody);
+        activity.views.quizDisplay.setText(quizBody);
         // quiz choices
         ChoiceListAdapter adapter = new ChoiceListAdapter(activity.getApplicationContext());
         adapter.receiveQuiz(currentQuiz);
-        activity.vh.choicesList.setAdapter(adapter);
+        activity.views.choicesList.setAdapter(adapter);
         // choice selected event
-        activity.vh.choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
+        activity.views.choicesList.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ListView listView = (ListView) parent;
                 // receive user's answer.
@@ -180,9 +180,9 @@ public class QuizGame {
     private QuizGame finish(final MainActivity activity) {
         QuizResults results = quizzes.getResults();
         results.generateResultMessages().setMessageOf(lang).showResultArea();
-        activity.vh.quizDisplay.setVisibility(View.GONE);
-        activity.vh.choicesList.setVisibility(View.GONE);
-        activity.vh.fab.setVisibility(View.VISIBLE);
+        activity.views.quizDisplay.setVisibility(View.GONE);
+        activity.views.choicesList.setVisibility(View.GONE);
+        activity.views.fab.setVisibility(View.VISIBLE);
 
         return this;
     }

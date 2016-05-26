@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
     <TextView
         android:id="@+id/result_message"
         android:text="@string/msg_result_message_ja"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAlignment="center"
@@ -25,5 +27,4 @@
         android:layout_margin="10dp"
         android:layout_weight="1"
     />
-
 </LinearLayout>

@@ -1,10 +1,14 @@
 package com.tatsuowatanabe.funukulelequiz.model;
 
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
 import com.tatsuowatanabe.funukulelequiz.MainActivity;
 import com.tatsuowatanabe.funukulelequiz.R;
+import com.tatsuowatanabe.funukulelequiz.effect.FlashColor;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,18 +47,32 @@ public class QuizResults {
      */
     public QuizResults receiveAnswer(Quiz.Choice selectedChoice, Quiz quiz) {
         AnsweredQuiz answeredQuiz = new AnsweredQuiz(quiz, selectedChoice.getPoint());
-        Boolean useVibration = activity.getSharedPreferences().getBoolean(activity.getString(R.string.pref_key_vibration), false);
 
         if (answeredQuiz.isCorrect()) {
-            // TODO: Show correct color effect.
+            showColorEffect(ContextCompat.getColor(activity, R.color.correct));
         } else {
-            // TODO: Show incorrect color effect.
-            if (useVibration) { activity.getVibrator().vibrate(50); }
+            showColorEffect(ContextCompat.getColor(activity, R.color.incorrect));
+            if (activity.prefs.shouldUseVibration()) { activity.getVibrator().vibrate(50); }
         }
         // TODO: Set progress to progress bar.
 
         addPoint(answeredQuiz.getPoint());
         answeredes.add(answeredQuiz);
+        return this;
+    }
+
+    /**
+     * Show temporary color effect.
+     * @param effectColor
+     * @return
+     */
+    @Contract(pure = true)
+    private QuizResults showColorEffect(final Integer effectColor) {
+        if (!activity.prefs.shouldUseColorEffect()) { return this; }
+
+        final Integer contentMainColor = ContextCompat.getColor(activity, R.color.contentMain);
+        final Integer duration         = 500;
+        FlashColor.show(activity.views.contentMain, contentMainColor, effectColor, duration);
         return this;
     }
 
@@ -91,7 +109,7 @@ public class QuizResults {
     private QuizResults showCurrentPoint() {
         String formattedPoints = activity.getString(R.string.points, point);
         Log.d("formatted points: ", formattedPoints);
-        activity.vh.pointDisplay.setText(formattedPoints);
+        activity.views.pointDisplay.setText(formattedPoints);
         return this;
     }
 
@@ -137,8 +155,8 @@ public class QuizResults {
         String explanation   = lang.equals(ja) ? explanation_ja   :
                                lang.equals(en) ? explanation_en   : "";
 
-        activity.vh.resultMessage.setText(resultMessage);
-        activity.vh.explanation.setText(explanation);
+        activity.views.resultMessage.setText(resultMessage);
+        activity.views.explanation.setText(explanation);
 
         return this;
     }
@@ -148,7 +166,7 @@ public class QuizResults {
      * @return
      */
     public QuizResults hideResultArea() {
-        activity.vh.resultArea.setVisibility(View.GONE);
+        activity.views.resultArea.setVisibility(View.GONE);
         return this;
     }
 
@@ -157,7 +175,7 @@ public class QuizResults {
      * @return
      */
     public QuizResults showResultArea() {
-        activity.vh.resultArea.setVisibility(View.VISIBLE);
+        activity.views.resultArea.setVisibility(View.VISIBLE);
         return this;
     }
 
