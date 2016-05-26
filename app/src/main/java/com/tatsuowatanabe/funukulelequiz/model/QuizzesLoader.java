@@ -30,7 +30,7 @@ public class QuizzesLoader {
 
     /** Callback interface for delivering quizzes. */
     public interface Listener {
-        /** Called when a quizzes is received. */
+        /** Called when in_right quizzes is received. */
         void onLoad(Quizzes quizzes);
     }
 

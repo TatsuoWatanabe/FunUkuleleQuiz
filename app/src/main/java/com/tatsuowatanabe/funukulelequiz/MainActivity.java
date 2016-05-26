@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify in_right parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             Intent settingsIntent = new android.content.Intent(this, SettingsActivity.class);
             settingsIntent.putExtra("lang", game.getLang());
             startActivity(settingsIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             return true;
         } else if (id == R.id.action_lang_en) {
             game.toEnglish();
