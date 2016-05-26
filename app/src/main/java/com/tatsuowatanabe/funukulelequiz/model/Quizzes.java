@@ -18,11 +18,12 @@ import java.util.NoSuchElementException;
  */
 public class Quizzes {
     private static final Gson gson = new Gson();
-    public ArrayList<Quiz> quizArrayList;
+    private ArrayList<Quiz> quizArrayList;
     private transient Iterator<Quiz> quizIterator;
     /** @see ://www.javacreed.com/gson-annotations-example/ */
     private transient QuizResults results;
     private transient Quiz currentQuiz;
+    private transient Integer index = 0;
 
     /**
      * factory method. create self instance from json.
@@ -63,6 +64,7 @@ public class Quizzes {
      * @see #hasNext
      */
     public Quiz next() {
+        index += 1;
         currentQuiz = getQuizIterator().next();
         return currentQuiz;
     }
@@ -142,6 +144,22 @@ public class Quizzes {
     public QuizResults getResults() {
         results = (results == null) ? new QuizResults() : results;
         return results;
+    }
+
+    /**
+     * Get the size of quizzes.
+     * @return
+     */
+    public Integer size() {
+        return quizArrayList.size();
+    }
+
+    /**
+     * Get the current index.
+     * @return
+     */
+    public Integer getIndex() {
+        return index;
     }
 
     /**

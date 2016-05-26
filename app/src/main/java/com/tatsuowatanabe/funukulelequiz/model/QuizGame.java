@@ -148,6 +148,8 @@ public class QuizGame {
      */
     private QuizGame showQuiz(String lang) {
         Quiz currentQuiz = quizzes.current().setLang(lang);
+        activity.views.quizzesProgress.setText(activity.getString(R.string.quizzes_progress, quizzes.getIndex(), quizzes.size()));
+        activity.views.quizzesProgress.setVisibility(View.VISIBLE);
 
         Log.d("System language", Locale.getDefault().getLanguage());
 
@@ -182,6 +184,7 @@ public class QuizGame {
         results.generateResultMessages().setMessageOf(lang).showResultArea();
         activity.views.quizDisplay.setVisibility(View.GONE);
         activity.views.choicesList.setVisibility(View.GONE);
+        activity.views.quizzesProgress.setVisibility(View.GONE);
         activity.views.fab.setVisibility(View.VISIBLE);
 
         return this;

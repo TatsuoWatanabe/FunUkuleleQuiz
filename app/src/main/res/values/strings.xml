@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="lang_ja">ja</string>
     <string name="lang_en">en</string>
+    <string name="quizzes_progress">%1$s / %2$s</string>
     <string name="msg_lang_changed_ja">言語を日本語に変更しました。</string>
     <string name="msg_lang_changed_en">Langage changed to English.</string>
     <string name="msg_perfect_ja">すごい! パーフェクト！</string>

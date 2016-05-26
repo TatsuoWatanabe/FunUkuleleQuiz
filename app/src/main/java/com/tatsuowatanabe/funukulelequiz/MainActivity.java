@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         prefs = new PreferencesHolder();
         views = new ViewHolder();
-        views.resultArea.setVisibility(View.GONE);
-        views.pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
         setSupportActionBar(views.toolbar);
         game     = new QuizGame(this);
         mQueue   = Volley.newRequestQueue(this);
@@ -72,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onClick(final View view) { startQuiz(); }
         });
         // TODO: Set the progress bar of quizzes.
-        // TODO: Add setting of advertisement
+        // TODO: Add setting of advertisement.
+        // TODO: Add in app purchase.
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -155,18 +154,24 @@ public class MainActivity extends AppCompatActivity {
      * Holder class of activity view resource.
      */
     public class ViewHolder {
-        public final Toolbar              toolbar        = (Toolbar)findViewById(R.id.toolbar);
-        public final FloatingActionButton fab            = (FloatingActionButton)findViewById(R.id.fab);
-        public final TextView             quizDisplay    = (TextView)findViewById(R.id.quiz_display);
-        public final TextView             pointDisplay   = (TextView)findViewById(R.id.point_display);
-        public final ListView             choicesList    = (ListView)findViewById(R.id.choices_list);
-        public final TextView             resultMessage  = (TextView)findViewById(R.id.result_message);
-        public final TextView             explanation    = (TextView)findViewById(R.id.explanation);
-        public final View                 resultArea     = (View)findViewById(R.id.result_area);
-        public final View                 welcomeArea    = (View)findViewById(R.id.welcome_area);
-        public final TextView             welcomeMessage = (TextView)findViewById(R.id.welcome_message);
-        public final View                 loadingArea    = (View)findViewById(R.id.loading_area);
-        public final View                 contentMain    = (View)findViewById(R.id.content_main);
+        public final Toolbar              toolbar         = (Toolbar)findViewById(R.id.toolbar);
+        public final FloatingActionButton fab             = (FloatingActionButton)findViewById(R.id.fab);
+        public final TextView             quizDisplay     = (TextView)findViewById(R.id.quiz_display);
+        public final TextView             pointDisplay    = (TextView)findViewById(R.id.point_display);
+        public final ListView             choicesList     = (ListView)findViewById(R.id.choices_list);
+        public final TextView             resultMessage   = (TextView)findViewById(R.id.result_message);
+        public final TextView             explanation     = (TextView)findViewById(R.id.explanation);
+        public final View                 resultArea      = (View)findViewById(R.id.result_area);
+        public final View                 welcomeArea     = (View)findViewById(R.id.welcome_area);
+        public final TextView             welcomeMessage  = (TextView)findViewById(R.id.welcome_message);
+        public final View                 loadingArea     = (View)findViewById(R.id.loading_area);
+        public final View                 contentMain     = (View)findViewById(R.id.content_main);
+        public final TextView             quizzesProgress = (TextView)findViewById(R.id.quizzes_progress);
+        public ViewHolder() {
+            resultArea.setVisibility(View.GONE);
+            quizzesProgress.setVisibility(View.GONE);
+            pointDisplay.setText(getString(R.string.points, 0)); // 0 pt
+        }
     }
 
 }
