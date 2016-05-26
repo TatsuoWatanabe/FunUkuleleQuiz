@@ -2,7 +2,6 @@ package com.tatsuowatanabe.funukulelequiz.adapter;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;

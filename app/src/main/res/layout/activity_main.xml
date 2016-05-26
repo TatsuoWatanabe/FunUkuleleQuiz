@@ -22,5 +22,4 @@
         android:src="@android:drawable/ic_media_play"
         app:backgroundTint="#00f2ff"
     />
-
 </android.support.design.widget.CoordinatorLayout>
