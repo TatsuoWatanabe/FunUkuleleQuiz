@@ -15,7 +15,7 @@ machine:
 ## Customize dependencies
 dependencies:
   override:
-    - echo y | android update sdk --no-ui --filter "android-21,build-tools-21.1.2"
+    - echo y | android update sdk --no-ui --filter "android-23,build-tools-23.0.1"
 
 ## Customize test commands
 test:
