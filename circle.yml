@@ -6,10 +6,9 @@ general:
 ## Customize the test machine
 machine:
   java:
-    version: openjdk7
-
-  # Add some environment variables
+    version: oraclejdk8
   environment:
+    JAVA_OPTS: "-Xms518m -Xmx2048m"
     ANDROID_HOME: /usr/local/android-sdk-linux
 
 ## Customize dependencies

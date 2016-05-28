@@ -13,6 +13,12 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
     }
+    dexOptions {
+        if(System.getenv()["CIRCLECI"] as boolean) {
+            javaMaxHeapSize "2048M"
+            preDexLibraries false
+        }
+    }
     buildTypes {
         debug {
             debuggable true
