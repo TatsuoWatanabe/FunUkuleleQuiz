@@ -20,4 +20,10 @@
         android:summary="@string/pref_summ_color_effect_ja"
         android:defaultValue="true"
     />
+    <CheckBoxPreference
+        android:key="@string/pref_key_ads"
+        android:title="@string/pref_title_ads_ja"
+        android:summary="@string/pref_summ_ads_ja"
+        android:defaultValue="true"
+    />
 </PreferenceScreen>

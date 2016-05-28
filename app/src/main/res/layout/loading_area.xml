@@ -16,7 +16,7 @@
         android:visibility="visible"
         android:layout_centerInParent="true"
         app:indicator="BallPulseSync"
-        app:indicator_color="@color/common_signin_btn_dark_text_default"
+        app:indicator_color="@color/common_action_bar_splitter"
     />
 
 </RelativeLayout>

@@ -3,7 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="choice_normal">25dp</dimen>
-    <dimen name="choice_medium">20dp</dimen>
-    <dimen name="choice_small">15dp</dimen>
+    <dimen name="choice_LLL">25dp</dimen>
+    <dimen name="choice_LL" >23dp</dimen>
+    <dimen name="choice_L"  >21dp</dimen>
+    <dimen name="choice_M"  >19dp</dimen>
+    <dimen name="choice_S"  >17dp</dimen>
+    <dimen name="choice_SS" >15dp</dimen>
+    <dimen name="choice_SSS">13dp</dimen>
 </resources>

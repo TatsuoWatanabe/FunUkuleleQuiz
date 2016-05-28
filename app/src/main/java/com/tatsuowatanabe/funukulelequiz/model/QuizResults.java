@@ -54,7 +54,6 @@ public class QuizResults {
             showColorEffect(ContextCompat.getColor(activity, R.color.incorrect));
             if (activity.prefs.shouldUseVibration()) { activity.getVibrator().vibrate(50); }
         }
-        // TODO: Set progress to progress bar.
 
         addPoint(answeredQuiz.getPoint());
         answeredes.add(answeredQuiz);

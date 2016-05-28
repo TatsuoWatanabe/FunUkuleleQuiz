@@ -15,7 +15,7 @@ android {
         debug {
             debuggable true
             minifyEnabled false
-            applicationIdSuffix ".debug"
+            applicationIdSuffix ""
         }
         release {
             minifyEnabled false
@@ -35,12 +35,19 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.google.android.gms:play-services-appindexing:9.0.0'
+    compile 'com.google.android.gms:play-services:9.0.0'
     compile 'com.mcxiaoke.volley:library:1.+'
-    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.google.code.gson:gson:2.4'
     compile 'com.wang.avi:library:1.0.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.google.android.gms:play-services-ads:9.0.0'
+    compile 'com.google.android.gms:play-services-analytics:9.0.0'
+    compile 'com.google.android.gms:play-services-auth:9.0.0'
+    compile 'com.google.android.gms:play-services-gcm:9.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

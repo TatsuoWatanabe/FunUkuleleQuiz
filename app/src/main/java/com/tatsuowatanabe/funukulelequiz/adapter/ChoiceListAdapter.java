@@ -58,8 +58,13 @@ public class ChoiceListAdapter extends ArrayAdapter<Quiz.Choice>  {
         String body = choice.getBody(convertView.getContext());
         tv.setText(body);
         Float textSizeDp = getContext().getResources().getDimension(
-            body.length() > 100 ? R.dimen.choice_small  :
-            body.length() > 50  ? R.dimen.choice_medium : R.dimen.choice_normal
+            body.length() < 10 ? R.dimen.choice_LLL :
+            body.length() < 20 ? R.dimen.choice_LL  :
+            body.length() < 30 ? R.dimen.choice_L   :
+            body.length() < 40 ? R.dimen.choice_M   :
+            body.length() < 50 ? R.dimen.choice_S   :
+            body.length() < 60 ? R.dimen.choice_SS  :
+                                 R.dimen.choice_SSS
         );
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeDp);
 

@@ -5,6 +5,11 @@
     <string name="lang_ja">ja</string>
     <string name="lang_en">en</string>
     <string name="quizzes_progress">%1$s / %2$s</string>
+    <string name="ad_unit_id">ca-app-pub-5725431064218852/8659824128</string>
+    <array name="admob_test_devices">
+        <item>E809BA54305F73BC21A6DDDE71065CF3</item>
+        <item>597A5AFBBEE1976D1F7D6F2C28841C2C</item>
+    </array>
     <string name="msg_lang_changed_ja">言語を日本語に変更しました。</string>
     <string name="msg_lang_changed_en">Langage changed to English.</string>
     <string name="msg_perfect_ja">すごい! パーフェクト！</string>
@@ -22,18 +27,8 @@
     <string name="pref_key_local_mode">local_mode</string>
     <string name="pref_title_local_mode_ja">ローカルモード</string>
     <string name="pref_title_local_mode_en">Local Mode</string>
-    <string name="pref_summ_local_mode_ja">
-    <![CDATA[
-        クイズをローカルデータから取得します。\n
-        ※最新のクイズデータは取得されなくなります。
-    ]]>
-    </string>
-    <string name="pref_summ_local_mode_en">
-    <![CDATA[
-        Use the quiz data from local storage.\n
-        ※The latest quiz data will not load.
-    ]]>
-    </string>
+    <string name="pref_summ_local_mode_ja">クイズをローカルデータから取得します。\n※最新のクイズデータは取得されなくなります。</string>
+    <string name="pref_summ_local_mode_en">Use the quiz data from local storage.\n※The latest quiz data will not load.</string>
     <string name="pref_key_vibration">vibration</string>
     <string name="pref_title_vibration_ja">バイブレーション</string>
     <string name="pref_title_vibration_en">Vibration</string>
@@ -44,4 +39,9 @@
     <string name="pref_title_color_effect_en">Color Effect</string>
     <string name="pref_summ_color_effect_ja">カラーエフェクトを使用します。</string>
     <string name="pref_summ_color_effect_en">Use an effect of color.</string>
+    <string name="pref_key_ads">ads</string>
+    <string name="pref_title_ads_ja">広告の表示</string>
+    <string name="pref_title_ads_en">Advertisement</string>
+    <string name="pref_summ_ads_ja">広告を表示します。\n※無料版では再起動時にONになります。</string>
+    <string name="pref_summ_ads_en">Display an advertisement.\n※It becomes ON at the time of reboot with the free edition.</string>
 </resources>

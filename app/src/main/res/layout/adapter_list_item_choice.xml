@@ -30,7 +30,7 @@
             android:minHeight="48dp"
             android:layout_toRightOf="@+id/icon"
             android:text="choice body string ..."
-            android:textSize="@dimen/choice_normal"
+            android:textSize="@dimen/choice_LLL"
             android:gravity="left|center_vertical"
             android:textColor="#999999"
         />

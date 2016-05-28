@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "567637480650",
+    "firebase_url": "https://admob-app-id-3311294528.firebaseio.com",
+    "project_id": "admob-app-id-3311294528",
+    "storage_bucket": "admob-app-id-3311294528.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567637480650:android:aef8b6a43de61cdc",
+        "android_client_info": {
+          "package_name": "com.tatsuowatanabe.funukulelequiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567637480650-pp26v91apdppmtf9lkm83de8fla9hm2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsYHmILk4UqG2GHs-wEnSUVSzfgqSPU2k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -58,6 +58,17 @@ public class SettingsFragment extends PreferenceFragment {
                 isEn ? R.string.pref_summ_color_effect_en :
                        R.string.pref_summ_color_effect_en
         ));
+        CheckBoxPreference prefAds = (CheckBoxPreference)findPreference(getString(R.string.pref_key_ads));
+        prefAds.setTitle(getString(
+                isJa ? R.string.pref_title_ads_ja :
+                isEn ? R.string.pref_title_ads_en :
+                       R.string.pref_title_ads_en
+        ));
+        prefAds.setSummary(getString(
+                isJa ? R.string.pref_summ_ads_ja :
+                isEn ? R.string.pref_summ_ads_en :
+                       R.string.pref_summ_ads_en
+        ));
         return this;
     }
 
