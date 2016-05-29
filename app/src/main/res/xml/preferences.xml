@@ -2,25 +2,25 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="@string/pref_key_local_mode"
         android:title="@string/pref_title_local_mode_ja"
         android:summary="@string/pref_summ_local_mode_ja"
         android:defaultValue="false"
     />
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="@string/pref_key_vibration"
         android:title="@string/pref_title_vibration_ja"
         android:summary="@string/pref_summ_vibration_ja"
         android:defaultValue="true"
     />
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="@string/pref_key_color_effect"
         android:title="@string/pref_title_color_effect_ja"
         android:summary="@string/pref_summ_color_effect_ja"
         android:defaultValue="true"
     />
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="@string/pref_key_ads"
         android:title="@string/pref_title_ads_ja"
         android:summary="@string/pref_summ_ads_ja"

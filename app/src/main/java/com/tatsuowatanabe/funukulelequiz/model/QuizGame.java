@@ -184,7 +184,6 @@ public class QuizGame {
         results.generateResultMessages().setMessageOf(lang).showResultArea();
         activity.views.quizDisplay.setVisibility(View.GONE);
         activity.views.choicesList.setVisibility(View.GONE);
-        activity.views.quizzesProgress.setVisibility(View.GONE);
         activity.views.fab.setVisibility(View.VISIBLE);
 
         return this;

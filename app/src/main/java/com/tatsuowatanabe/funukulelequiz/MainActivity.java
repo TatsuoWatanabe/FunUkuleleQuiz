@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public PreferencesHolder prefs;
 
+    /**
+     * Manager of purchase.
+     */
+    // private PurchaseManager purchase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         final Boolean isFreeEdition = true;
         prefs.setShowAds(isFreeEdition);
 
+        // purchase = new PurchaseManager(this);
         // floating action button
         views.fab.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(final View view) { startQuiz(); }
@@ -80,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // purchase.disposeWhenFinished();
     }
 
     /**
@@ -105,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingsIntent = new android.content.Intent(this, SettingsActivity.class);
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
             settingsIntent.putExtra("lang", game.getLang());
             startActivity(settingsIntent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

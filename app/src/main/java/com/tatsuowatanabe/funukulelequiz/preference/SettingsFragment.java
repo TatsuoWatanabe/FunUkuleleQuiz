@@ -1,8 +1,8 @@
 package com.tatsuowatanabe.funukulelequiz.preference;
 
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 
 import com.tatsuowatanabe.funukulelequiz.R;
 
@@ -25,7 +25,7 @@ public class SettingsFragment extends PreferenceFragment {
         Boolean isJa = getString(R.string.lang_ja).equals(lang);
         Boolean isEn = getString(R.string.lang_en).equals(lang);
 
-        CheckBoxPreference prefLocalMode = (CheckBoxPreference)findPreference(getString(R.string.pref_key_local_mode));
+        SwitchPreference prefLocalMode = (SwitchPreference)findPreference(getString(R.string.pref_key_local_mode));
         prefLocalMode.setTitle(getString(
             isJa ? R.string.pref_title_local_mode_ja :
             isEn ? R.string.pref_title_local_mode_en :
@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragment {
             isEn ? R.string.pref_summ_local_mode_en :
                    R.string.pref_summ_local_mode_en
         ));
-        CheckBoxPreference prefVibration = (CheckBoxPreference)findPreference(getString(R.string.pref_key_vibration));
+        SwitchPreference prefVibration = (SwitchPreference)findPreference(getString(R.string.pref_key_vibration));
         prefVibration.setTitle(getString(
             isJa ? R.string.pref_title_vibration_ja :
             isEn ? R.string.pref_title_vibration_en :
@@ -47,7 +47,7 @@ public class SettingsFragment extends PreferenceFragment {
             isEn ? R.string.pref_summ_vibration_en :
                    R.string.pref_summ_vibration_en
         ));
-        CheckBoxPreference prefColorEffect = (CheckBoxPreference)findPreference(getString(R.string.pref_key_color_effect));
+        SwitchPreference prefColorEffect = (SwitchPreference)findPreference(getString(R.string.pref_key_color_effect));
         prefColorEffect.setTitle(getString(
                 isJa ? R.string.pref_title_color_effect_ja :
                 isEn ? R.string.pref_title_color_effect_en :
@@ -58,7 +58,7 @@ public class SettingsFragment extends PreferenceFragment {
                 isEn ? R.string.pref_summ_color_effect_en :
                        R.string.pref_summ_color_effect_en
         ));
-        CheckBoxPreference prefAds = (CheckBoxPreference)findPreference(getString(R.string.pref_key_ads));
+        SwitchPreference prefAds = (SwitchPreference)findPreference(getString(R.string.pref_key_ads));
         prefAds.setTitle(getString(
                 isJa ? R.string.pref_title_ads_ja :
                 isEn ? R.string.pref_title_ads_en :
