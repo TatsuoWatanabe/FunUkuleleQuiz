@@ -42,6 +42,6 @@
     <string name="pref_key_ads">ads</string>
     <string name="pref_title_ads_ja">広告の表示</string>
     <string name="pref_title_ads_en">Advertisement</string>
-    <string name="pref_summ_ads_ja">広告を表示します。\n※無料版では再起動時にONになります。</string>
-    <string name="pref_summ_ads_en">Display an advertisement.\n※It becomes ON at the time of reboot with the free edition.</string>
+    <string name="pref_summ_ads_ja">広告を表示します。\n※再起動時にONになります。</string>
+    <string name="pref_summ_ads_en">Display an advertisement.\n※It becomes ON at the time of reboot.</string>
 </resources>
